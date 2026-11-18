@@ -21,6 +21,9 @@ button:focus-visible,select:focus-visible{outline:3px solid #ff9f1c;outline-offs
 .tabs button[aria-pressed="true"]{background:#1f4fd8;border-color:#1f4fd8;color:#fff;box-shadow:inset 0 -4px 0 #ff9f1c}
 .modebar{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
 .modebar button[aria-pressed="true"]{background:#1f4fd8;color:#fff}
+.voicebar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 8px}
+.voicebar select{font:inherit;min-height:48px;padding:8px 12px;border-radius:12px;border:2px solid #1f4fd8;background:#fff;max-width:100%;flex:1 1 220px}
+.hint{margin:0 0 8px;color:#8a1c1c;font-size:.95rem}
 #status{margin:8px 0;padding:10px 14px;border-radius:10px;background:#fff3cd;color:#664d03;display:none}
 #status.show{display:block}
 .grid{display:grid;grid-template-columns:1fr;gap:14px;padding-bottom:32px;list-style:none;margin:0;padding-left:0}
@@ -60,6 +63,11 @@ button:focus-visible,select:focus-visible{outline:3px solid #ff9f1c;outline-offs
     <button type="button" id="modeLearn" aria-pressed="true">Вчити фрази</button>
     <button type="button" id="modePractice" aria-pressed="false">Перевір себе</button>
   </div>
+  <div class="voicebar">
+    <label for="voiceSel">Голос озвучення:</label>
+    <select id="voiceSel"><option>Завантаження голосів…</option></select>
+  </div>
+  <p id="voiceHint" class="hint" aria-live="polite"></p>
   <div id="status" role="alert" aria-live="assertive"></div>
 
   <section id="learn" aria-label="Список фраз">
@@ -91,11 +99,11 @@ button:focus-visible,select:focus-visible{outline:3px solid #ff9f1c;outline-offs
 
 <script>
 const THEMES = ["Знайомство", "Магазин", "Кафе", "Транспорт", "Подорожі"];
-const RATE_NORMAL = 1.0, RATE_SLOW = 0.6;
+const RATE_NORMAL = 0.95, RATE_SLOW = 0.75;
 
 const PHRASES = [
 // Знайомство
-{ id: 1, theme: "Знайомство", en: "Hello, my name is Anna.", uk: "Привіт, мене звати Анна.", tip: "Name — [нейм]." },
+{ id: 1, theme: "Знайомство", en: "Hello, my name is Maria.", uk: "Привіт, мене звати Марія.", tip: "Name — [нейм]." },
 { id: 2, theme: "Знайомство", en: "Nice to meet you.", uk: "Приємно познайомитися.", tip: "Meet — [міт], довгий звук [і]." },
 { id: 3, theme: "Знайомство", en: "What is your name?", uk: "Як вас звати?", tip: "Наголос на name; what — [вот]." },
 { id: 4, theme: "Знайомство", en: "How are you today?", uk: "Як ви сьогодні?", tip: "How — [хау], are майже не вимовляється чітко." },
@@ -230,14 +238,46 @@ function showStatus(msg) {
   statusEl.textContent = msg;
   statusEl.classList.toggle("show", !!msg);
 }
+const VOICE_KEY = "englishByEar.voiceURI";
+const voiceSel = document.getElementById("voiceSel");
+const voiceHint = document.getElementById("voiceHint");
+const isUS = v => (v.lang || "").replace("_", "-").toLowerCase() === "en-us";
+let selectedURI = null;
+try { selectedURI = localStorage.getItem(VOICE_KEY); } catch (e) {}
+
 function loadVoices() {
   if (!synthOK) return;
-  voices = window.speechSynthesis.getVoices() || [];
+  const all = window.speechSynthesis.getVoices() || [];
+  voices = all.filter(v => (v.lang || "").toLowerCase().startsWith("en"))
+              .sort((a, b) => (isUS(b) ? 1 : 0) - (isUS(a) ? 1 : 0));
+  renderVoices();
 }
 function pickVoice() {
-  return voices.find(v => v.lang && v.lang.replace("_", "-").toLowerCase() === "en-us") ||
-         voices.find(v => v.lang && v.lang.toLowerCase().startsWith("en")) || null;
+  return voices.find(v => v.voiceURI === selectedURI) || voices.find(isUS) || voices[0] || null;
 }
+function renderVoices() {
+  voiceSel.innerHTML = "";
+  voices.forEach(v => {
+    const o = document.createElement("option");
+    o.value = v.voiceURI;
+    o.textContent = v.name + " (" + v.lang + ")";
+    voiceSel.appendChild(o);
+  });
+  const cur = pickVoice();
+  if (cur) voiceSel.value = cur.voiceURI;
+  voiceSel.disabled = !voices.length;
+  if (!voices.length) {
+    const o = document.createElement("option");
+    o.textContent = "Англійських голосів не знайдено";
+    voiceSel.appendChild(o);
+  }
+  voiceHint.textContent = voices.length ? "" :
+    "Англійський голос недоступний. Установіть англійський голос у налаштуваннях пристрою (мова та голосовий вивід) і оновіть сторінку.";
+}
+voiceSel.addEventListener("change", () => {
+  selectedURI = voiceSel.value;
+  try { localStorage.setItem(VOICE_KEY, selectedURI); } catch (e) {}
+});
 function speak(text, rate) {
   if (!synthOK) {
     showStatus("Озвучення недоступне у цьому браузері. Спробуйте Chrome, Edge або Safari.");
@@ -245,7 +285,6 @@ function speak(text, rate) {
   }
   showStatus("");
   try {
-    loadVoices();
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
     u.lang = "en-US";
