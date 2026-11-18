@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Англійська на слух — A1–A2</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;max-width:100%;overflow-x:hidden}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:#f3f6fb;color:#1b2434;line-height:1.45}
+header{background:#1f4fd8;color:#fff;padding:20px 16px 12px}
+header h1{margin:0 0 4px;font-size:1.5rem}
+header p{margin:0;opacity:.9}
+.wrap{max-width:1100px;margin:0 auto;padding:0 12px}
+.tabs{position:sticky;top:0;z-index:5;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.tabs .wrap{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;-webkit-overflow-scrolling:touch}
+button{font:inherit;min-height:48px;padding:10px 16px;border-radius:12px;border:2px solid #1f4fd8;background:#fff;color:#1f4fd8;cursor:pointer;font-weight:600}
+button:hover{background:#e8eefc}
+button:focus-visible,select:focus-visible{outline:3px solid #ff9f1c;outline-offset:2px}
+.tabs button{flex:0 0 auto;white-space:nowrap;border-color:#c5d0ea;color:#35435f}
+.tabs button[aria-pressed="true"]{background:#1f4fd8;border-color:#1f4fd8;color:#fff;box-shadow:inset 0 -4px 0 #ff9f1c}
+.modebar{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.modebar button[aria-pressed="true"]{background:#1f4fd8;color:#fff}
+#status{margin:8px 0;padding:10px 14px;border-radius:10px;background:#fff3cd;color:#664d03;display:none}
+#status.show{display:block}
+.grid{display:grid;grid-template-columns:1fr;gap:14px;padding-bottom:32px;list-style:none;margin:0;padding-left:0}
+@media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(20,40,90,.1);display:flex;flex-direction:column;gap:8px;min-width:0}
+.en{font-size:1.5rem;font-weight:700;margin:0;overflow-wrap:anywhere}
+.uk{margin:0;font-size:1.05rem;color:#35435f}
+.tip{margin:0;font-size:.92rem;color:#5a4a00;background:#fff8dc;border-radius:8px;padding:6px 10px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.actions button{flex:1 1 120px}
+.slow{background:#1f4fd8;color:#fff}
+.slow:hover{background:#173ca8}
+.practice{background:#fff;border-radius:16px;padding:20px 16px;box-shadow:0 2px 8px rgba(20,40,90,.1);margin-bottom:32px}
+.practice .count{color:#5b6780;margin:0 0 8px}
+.hidden{display:none!important}
+.answer{margin-top:12px}
+.placeholder{font-size:1.2rem;color:#5b6780;margin:8px 0}
+.primary{background:#1f4fd8;color:#fff}
+.primary:hover{background:#173ca8}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Англійська на слух</h1>
+    <p>Слухайте короткі фрази, розумійте їх і повторюйте вголос. Рівень A1–A2.</p>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Теми">
+  <div class="wrap" id="tabs" role="group"></div>
+</nav>
+
+<main class="wrap">
+  <div class="modebar" role="group" aria-label="Режим">
+    <button type="button" id="modeLearn" aria-pressed="true">Вчити фрази</button>
+    <button type="button" id="modePractice" aria-pressed="false">Перевір себе</button>
+  </div>
+  <div id="status" role="alert" aria-live="assertive"></div>
+
+  <section id="learn" aria-label="Список фраз">
+    <h2 id="learnTitle"></h2>
+    <ul class="grid" id="cards"></ul>
+  </section>
+
+  <section id="practice" class="hidden" aria-label="Тренування">
+    <h2>Перевір себе</h2>
+    <div class="practice">
+      <p class="count" id="pCount" aria-live="polite"></p>
+      <p class="placeholder" id="pHidden">Послухайте фразу, спробуйте зрозуміти її та повторіть уголос.</p>
+      <div class="actions">
+        <button type="button" id="pPlay" aria-label="Прослухати фразу у звичайному темпі">Прослухати</button>
+        <button type="button" id="pSlow" class="slow" aria-label="Прослухати фразу повільно">Повільно</button>
+      </div>
+      <div class="answer hidden" id="pAnswer" aria-live="polite">
+        <p class="en" id="pEn"></p>
+        <p class="uk" id="pUk"></p>
+        <p class="tip" id="pTip"></p>
+      </div>
+      <div class="actions" style="margin-top:12px">
+        <button type="button" id="pShow" class="primary">Показати фразу й переклад</button>
+        <button type="button" id="pNext">Наступна фраза</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+const THEMES = ["Знайомство", "Магазин", "Кафе", "Транспорт", "Подорожі"];
+const RATE_NORMAL = 1.0, RATE_SLOW = 0.6;
+
+const PHRASES = [
+// Знайомство
+{ id: 1, theme: "Знайомство", en: "Hello, my name is Anna.", uk: "Привіт, мене звати Анна.", tip: "Name — [нейм]." },
+{ id: 2, theme: "Знайомство", en: "Nice to meet you.", uk: "Приємно познайомитися.", tip: "Meet — [міт], довгий звук [і]." },
+{ id: 3, theme: "Знайомство", en: "What is your name?", uk: "Як вас звати?", tip: "Наголос на name; what — [вот]." },
+{ id: 4, theme: "Знайомство", en: "How are you today?", uk: "Як ви сьогодні?", tip: "How — [хау], are майже не вимовляється чітко." },
+{ id: 5, theme: "Знайомство", en: "I'm fine, thank you.", uk: "Я добре, дякую.", tip: "Thank — кінчик язика між зубами." },
+{ id: 6, theme: "Знайомство", en: "Where are you from?", uk: "Звідки ви?", tip: "From — [фром], наголос на where." },
+{ id: 7, theme: "Знайомство", en: "I'm from Ukraine.", uk: "Я з України.", tip: "Ukraine — [юкрейн], наголос на другому складі." },
+{ id: 8, theme: "Знайомство", en: "I live in Kyiv.", uk: "Я живу в Києві.", tip: "Live — короткий [і]: [лів]." },
+{ id: 9, theme: "Знайомство", en: "How old are you?", uk: "Скільки вам років?", tip: "Old — [оулд], звук [оу]." },
+{ id: 10, theme: "Знайомство", en: "I'm twenty-five years old.", uk: "Мені двадцять п'ять років.", tip: "Twenty — [твенті]; years — [єрз]." },
+{ id: 11, theme: "Знайомство", en: "Do you speak English?", uk: "Ви говорите англійською?", tip: "Speak — [спік], довгий [і]." },
+{ id: 12, theme: "Знайомство", en: "I speak a little English.", uk: "Я трохи говорю англійською.", tip: "Little — [літл], м'який кінець." },
+{ id: 13, theme: "Знайомство", en: "Could you repeat that, please?", uk: "Повторіть, будь ласка.", tip: "Could — [куд], літера l не читається." },
+{ id: 14, theme: "Знайомство", en: "Please speak more slowly.", uk: "Говоріть, будь ласка, повільніше.", tip: "Slowly — [слоулі]." },
+{ id: 15, theme: "Знайомство", en: "I don't understand.", uk: "Я не розумію.", tip: "Наголос на -stand; don't — [доунт]." },
+{ id: 16, theme: "Знайомство", en: "What do you do?", uk: "Ким ви працюєте?", tip: "Питання про роботу; do — [ду]." },
+{ id: 17, theme: "Знайомство", en: "I work in an office.", uk: "Я працюю в офісі.", tip: "Work — [ворк], не [ворк] з різким о." },
+{ id: 18, theme: "Знайомство", en: "I'm a student.", uk: "Я студент.", tip: "Student — [стьюдент], наголос на першому складі." },
+{ id: 19, theme: "Знайомство", en: "This is my friend Tom.", uk: "Це мій друг Том.", tip: "This — [зіс], язик між зубами." },
+{ id: 20, theme: "Знайомство", en: "Do you have any brothers or sisters?", uk: "У вас є брати чи сестри?", tip: "Brothers — [брозерз], th дзвінкий." },
+{ id: 21, theme: "Знайомство", en: "I have a big family.", uk: "У мене велика родина.", tip: "Family — [фемілі], три склади." },
+{ id: 22, theme: "Знайомство", en: "What do you like to do?", uk: "Що ви любите робити?", tip: "Like — [лайк]." },
+{ id: 23, theme: "Знайомство", en: "See you tomorrow.", uk: "До завтра.", tip: "Tomorrow — [тумороу], наголос на -mo-." },
+{ id: 24, theme: "Знайомство", en: "Have a good day!", uk: "Гарного вам дня!", tip: "Have — [хев]; good — короткий [у]." },
+// Магазин
+{ id: 25, theme: "Магазин", en: "How much is this?", uk: "Скільки це коштує?", tip: "Much — [мач]." },
+{ id: 26, theme: "Магазин", en: "How much are these apples?", uk: "Скільки коштують ці яблука?", tip: "These — довгий [і], apples — [еплз]." },
+{ id: 27, theme: "Магазин", en: "Do you have this in a larger size?", uk: "Є це більшого розміру?", tip: "Larger — [ладжер]; size — [сайз]." },
+{ id: 28, theme: "Магазин", en: "Can I try it on?", uk: "Можна це приміряти?", tip: "Try it on звучить злито: [трай іт он]." },
+{ id: 29, theme: "Магазин", en: "Where is the fitting room?", uk: "Де примірочна?", tip: "Fitting — [фітінг]." },
+{ id: 30, theme: "Магазин", en: "I'm just looking, thanks.", uk: "Я просто дивлюся, дякую.", tip: "Looking — короткий [у]: [лукінг]." },
+{ id: 31, theme: "Магазин", en: "I'll take it.", uk: "Я це візьму.", tip: "I'll — [айл], злито з take." },
+{ id: 32, theme: "Магазин", en: "Do you accept credit cards?", uk: "Ви приймаєте кредитні картки?", tip: "Accept — [ексепт], наголос на -cept." },
+{ id: 33, theme: "Магазин", en: "Can I pay by card?", uk: "Можна заплатити карткою?", tip: "Card — [кард], довгий [а]." },
+{ id: 34, theme: "Магазин", en: "I'd like to pay in cash.", uk: "Я хочу заплатити готівкою.", tip: "I'd like — [айд лайк]." },
+{ id: 35, theme: "Магазин", en: "Could I have a bag, please?", uk: "Можна пакет, будь ласка?", tip: "Bag — [бег], короткий [е]." },
+{ id: 36, theme: "Магазин", en: "Do you have a cheaper one?", uk: "Є щось дешевше?", tip: "Cheaper — [чіпер]." },
+{ id: 37, theme: "Магазин", en: "It's too expensive for me.", uk: "Це для мене надто дорого.", tip: "Expensive — [ікспенсів], наголос на -pen-." },
+{ id: 38, theme: "Магазин", en: "Is there a discount?", uk: "Є знижка?", tip: "Discount — [діскаунт], наголос на першому складі." },
+{ id: 39, theme: "Магазин", en: "Where can I find milk?", uk: "Де я можу знайти молоко?", tip: "Milk — [мілк], м'який [л]." },
+{ id: 40, theme: "Магазин", en: "What time do you close?", uk: "О котрій ви зачиняєтеся?", tip: "Close — [клоуз], в кінці [з]." },
+{ id: 41, theme: "Магазин", en: "Is this on sale?", uk: "Це зі знижкою?", tip: "Sale — [сейл]." },
+{ id: 42, theme: "Магазин", en: "Can I get a receipt, please?", uk: "Можна чек, будь ласка?", tip: "Receipt — [рісіт], p не читається." },
+{ id: 43, theme: "Магазин", en: "I need a new pair of shoes.", uk: "Мені потрібна нова пара взуття.", tip: "Shoes — [шуз]." },
+{ id: 44, theme: "Магазин", en: "Do you have this in blue?", uk: "Є це в синьому кольорі?", tip: "Blue — [блу], довгий [у]." },
+{ id: 45, theme: "Магазин", en: "It doesn't fit me.", uk: "Це мені не підходить за розміром.", tip: "Fit — короткий [і]: [фіт]." },
+{ id: 46, theme: "Магазин", en: "Can I return this?", uk: "Можна це повернути?", tip: "Return — [рітерн], наголос на -turn." },
+{ id: 47, theme: "Магазин", en: "Keep the change.", uk: "Решту залиште собі.", tip: "Change — [чейндж]." },
+{ id: 48, theme: "Магазин", en: "Thank you for your help.", uk: "Дякую за допомогу.", tip: "Help — [хелп], звук [х] видихом." },
+// Кафе
+{ id: 49, theme: "Кафе", en: "A table for two, please.", uk: "Столик на двох, будь ласка.", tip: "Table — [тейбл], наголос на першому складі." },
+{ id: 50, theme: "Кафе", en: "Can I see the menu, please?", uk: "Можна меню, будь ласка?", tip: "Menu — [меню], наголос на me-." },
+{ id: 51, theme: "Кафе", en: "What do you recommend?", uk: "Що ви порадите?", tip: "Recommend — наголос на -mend." },
+{ id: 52, theme: "Кафе", en: "I'd like a cup of coffee.", uk: "Я б хотів чашку кави.", tip: "Coffee — [кофі], наголос на co-." },
+{ id: 53, theme: "Кафе", en: "Can I have a glass of water?", uk: "Можна склянку води?", tip: "Water — [вотер]." },
+{ id: 54, theme: "Кафе", en: "Tea with milk, please.", uk: "Чай з молоком, будь ласка.", tip: "Tea — [ті], довгий звук." },
+{ id: 55, theme: "Кафе", en: "I'll have the chicken soup.", uk: "Я візьму курячий суп.", tip: "Chicken — [чікін]." },
+{ id: 56, theme: "Кафе", en: "Is it spicy?", uk: "Це гостре?", tip: "Spicy — [спайсі]." },
+{ id: 57, theme: "Кафе", en: "I'm allergic to nuts.", uk: "У мене алергія на горіхи.", tip: "Allergic — [елерджік], наголос на -ler-." },
+{ id: 58, theme: "Кафе", en: "No sugar, please.", uk: "Без цукру, будь ласка.", tip: "Sugar — [шугер], початок як ш." },
+{ id: 59, theme: "Кафе", en: "Could we have some more bread?", uk: "Можна ще хліба?", tip: "Bread — [бред], короткий [е]." },
+{ id: 60, theme: "Кафе", en: "This is delicious!", uk: "Це дуже смачно!", tip: "Delicious — [делішес], наголос на -li-." },
+{ id: 61, theme: "Кафе", en: "Excuse me, we're ready to order.", uk: "Перепрошую, ми готові замовити.", tip: "Order — [ордер]." },
+{ id: 62, theme: "Кафе", en: "Can I have the bill, please?", uk: "Можна рахунок, будь ласка?", tip: "Bill — [біл], короткий [і]." },
+{ id: 63, theme: "Кафе", en: "Is service included?", uk: "Обслуговування включено?", tip: "Service — [сервіс]." },
+{ id: 64, theme: "Кафе", en: "Separate checks, please.", uk: "Окремі рахунки, будь ласка.", tip: "Separate — [сепарет]." },
+{ id: 65, theme: "Кафе", en: "I'm vegetarian.", uk: "Я вегетаріанець.", tip: "Vegetarian — [веджітеріен]." },
+{ id: 66, theme: "Кафе", en: "Can I have it without onions?", uk: "Можна без цибулі?", tip: "Onions — [анйенз]." },
+{ id: 67, theme: "Кафе", en: "Do you have any desserts?", uk: "У вас є десерти?", tip: "Dessert — [дізерт], наголос на -sert." },
+{ id: 68, theme: "Кафе", en: "A slice of apple pie, please.", uk: "Шматок яблучного пирога, будь ласка.", tip: "Slice — [слайс]; pie — [пай]." },
+{ id: 69, theme: "Кафе", en: "Could I get a takeaway?", uk: "Можна з собою?", tip: "Takeaway — [тейкевей]." },
+{ id: 70, theme: "Кафе", en: "The soup is too hot.", uk: "Суп занадто гарячий.", tip: "Hot — короткий [о]." },
+{ id: 71, theme: "Кафе", en: "Could you bring me a fork?", uk: "Принесіть мені, будь ласка, виделку.", tip: "Fork — [форк]." },
+{ id: 72, theme: "Кафе", en: "Is this seat taken?", uk: "Це місце вільне?", tip: "Seat — довгий [і]: [сіт]." },
+// Транспорт
+{ id: 73, theme: "Транспорт", en: "Where is the bus stop?", uk: "Де автобусна зупинка?", tip: "Bus — [бас], короткий [а]." },
+{ id: 74, theme: "Транспорт", en: "Which bus goes to the center?", uk: "Який автобус їде до центру?", tip: "Which — [віч]." },
+{ id: 75, theme: "Транспорт", en: "Does this train go to Lviv?", uk: "Цей потяг їде до Львова?", tip: "Train — [трейн]." },
+{ id: 76, theme: "Транспорт", en: "One ticket to the airport, please.", uk: "Один квиток до аеропорту, будь ласка.", tip: "Ticket — [тікіт]; airport — [ерпорт]." },
+{ id: 77, theme: "Транспорт", en: "How much is a return ticket?", uk: "Скільки коштує квиток туди й назад?", tip: "Return — [рітерн]." },
+{ id: 78, theme: "Транспорт", en: "What time does the train leave?", uk: "О котрій відправляється потяг?", tip: "Leave — довгий [і]: [лів]." },
+{ id: 79, theme: "Транспорт", en: "What time does it arrive?", uk: "О котрій він прибуває?", tip: "Arrive — [еррайв], наголос на -rive." },
+{ id: 80, theme: "Транспорт", en: "Which platform is it?", uk: "Яка це платформа?", tip: "Platform — [платформ]." },
+{ id: 81, theme: "Транспорт", en: "Is this the right way to the metro?", uk: "Це правильна дорога до метро?", tip: "Right — [райт], w не читається." },
+{ id: 82, theme: "Транспорт", en: "Excuse me, is this seat free?", uk: "Перепрошую, це місце вільне?", tip: "Free — [фрі], довгий [і]." },
+{ id: 83, theme: "Транспорт", en: "Please stop here.", uk: "Зупиніться тут, будь ласка.", tip: "Here — [хієр]." },
+{ id: 84, theme: "Транспорт", en: "Take me to this address, please.", uk: "Відвезіть мене за цією адресою.", tip: "Address — [едрес], наголос на другому складі в американській." },
+{ id: 85, theme: "Транспорт", en: "How long does it take?", uk: "Скільки це триває?", tip: "Take — [тейк]." },
+{ id: 86, theme: "Транспорт", en: "How far is it from here?", uk: "Як далеко це звідси?", tip: "Far — [фар], довгий [а]." },
+{ id: 87, theme: "Транспорт", en: "Turn left at the corner.", uk: "На розі поверніть ліворуч.", tip: "Turn — [терн]; left — [лефт]." },
+{ id: 88, theme: "Транспорт", en: "Go straight ahead.", uk: "Ідіть прямо.", tip: "Straight — [стрейт]." },
+{ id: 89, theme: "Транспорт", en: "Turn right at the traffic lights.", uk: "На світлофорі поверніть праворуч.", tip: "Traffic — [трефік]." },
+{ id: 90, theme: "Транспорт", en: "I missed my bus.", uk: "Я запізнився на автобус.", tip: "Missed — [містт], кінцевий [т]." },
+{ id: 91, theme: "Транспорт", en: "The train is late.", uk: "Потяг запізнюється.", tip: "Late — [лейт]." },
+{ id: 92, theme: "Транспорт", en: "Where can I buy a ticket?", uk: "Де можна купити квиток?", tip: "Buy — [бай], літера u не читається." },
+{ id: 93, theme: "Транспорт", en: "Do I need to change trains?", uk: "Мені потрібна пересадка?", tip: "Change — [чейндж]." },
+{ id: 94, theme: "Транспорт", en: "Next stop, please.", uk: "Наступна зупинка, будь ласка.", tip: "Next — [некст], кінець злитий." },
+{ id: 95, theme: "Транспорт", en: "Can you call a taxi for me?", uk: "Можете викликати мені таксі?", tip: "Taxi — [тексі]." },
+{ id: 96, theme: "Транспорт", en: "I'm lost. Can you help me?", uk: "Я заблукав. Можете допомогти?", tip: "Lost — [лост]." },
+// Подорожі
+{ id: 97, theme: "Подорожі", en: "I have a reservation.", uk: "Я бронював номер.", tip: "Reservation — [резервейшн]." },
+{ id: 98, theme: "Подорожі", en: "Do you have any free rooms?", uk: "У вас є вільні номери?", tip: "Rooms — [румз]." },
+{ id: 99, theme: "Подорожі", en: "A single room for two nights, please.", uk: "Одномісний номер на дві ночі.", tip: "Night — [найт], gh не читається." },
+{ id: 100, theme: "Подорожі", en: "What time is check-out?", uk: "О котрій виселення?", tip: "Check-out — [чекаут]." },
+{ id: 101, theme: "Подорожі", en: "Is breakfast included?", uk: "Сніданок включено?", tip: "Breakfast — [брекфест], коротке [е]." },
+{ id: 102, theme: "Подорожі", en: "Where is the nearest pharmacy?", uk: "Де найближча аптека?", tip: "Pharmacy — [фармесі]." },
+{ id: 103, theme: "Подорожі", en: "Here is my passport.", uk: "Ось мій паспорт.", tip: "Passport — [песпорт]." },
+{ id: 104, theme: "Подорожі", en: "I'm here on holiday.", uk: "Я тут у відпустці.", tip: "Holiday — [холідей]." },
+{ id: 105, theme: "Подорожі", en: "I'll stay for one week.", uk: "Я пробуду тиждень.", tip: "Week — [вік]." },
+{ id: 106, theme: "Подорожі", en: "Where is my gate?", uk: "Де мій вихід на посадку?", tip: "Gate — [гейт]." },
+{ id: 107, theme: "Подорожі", en: "My flight is at ten o'clock.", uk: "Мій рейс о десятій.", tip: "Flight — [флайт]." },
+{ id: 108, theme: "Подорожі", en: "Where can I get my luggage?", uk: "Де я можу забрати багаж?", tip: "Luggage — [лагідж]." },
+{ id: 109, theme: "Подорожі", en: "My suitcase is missing.", uk: "Моя валіза зникла.", tip: "Suitcase — [сутькейс]." },
+{ id: 110, theme: "Подорожі", en: "Can you take a photo of us?", uk: "Можете нас сфотографувати?", tip: "Photo — [фоутоу]." },
+{ id: 111, theme: "Подорожі", en: "What is there to see here?", uk: "Що тут можна подивитися?", tip: "See — [сі], довгий звук." },
+{ id: 112, theme: "Подорожі", en: "Is it far from the beach?", uk: "Це далеко від пляжу?", tip: "Beach — [бич], довгий [і]." },
+{ id: 113, theme: "Подорожі", en: "Do you have a map of the city?", uk: "У вас є карта міста?", tip: "Map — [меп]; city — [сіті]." },
+{ id: 114, theme: "Подорожі", en: "What is the weather like today?", uk: "Яка сьогодні погода?", tip: "Weather — [везер], th дзвінкий." },
+{ id: 115, theme: "Подорожі", en: "It's sunny and warm.", uk: "Сонячно й тепло.", tip: "Warm — [ворм]." },
+{ id: 116, theme: "Подорожі", en: "I need a doctor.", uk: "Мені потрібен лікар.", tip: "Doctor — [доктер]." },
+{ id: 117, theme: "Подорожі", en: "Can you speak more slowly?", uk: "Можете говорити повільніше?", tip: "More — [мор]." },
+{ id: 118, theme: "Подорожі", en: "Where is the toilet?", uk: "Де туалет?", tip: "Toilet — [тойлет]." },
+{ id: 119, theme: "Подорожі", en: "Is the Wi-Fi free here?", uk: "Тут безкоштовний Wi-Fi?", tip: "Wi-Fi — [вайфай]." },
+{ id: 120, theme: "Подорожі", en: "Thank you for everything. Goodbye!", uk: "Дякую за все. До побачення!", tip: "Everything — [еврісінг]." }
+];
+
+/* ---------- Озвучення ---------- */
+const statusEl = document.getElementById("status");
+let voices = [];
+const synthOK = typeof window !== "undefined" && "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+
+function showStatus(msg) {
+  statusEl.textContent = msg;
+  statusEl.classList.toggle("show", !!msg);
+}
+function loadVoices() {
+  if (!synthOK) return;
+  voices = window.speechSynthesis.getVoices() || [];
+}
+function pickVoice() {
+  return voices.find(v => v.lang && v.lang.replace("_", "-").toLowerCase() === "en-us") ||
+         voices.find(v => v.lang && v.lang.toLowerCase().startsWith("en")) || null;
+}
+function speak(text, rate) {
+  if (!synthOK) {
+    showStatus("Озвучення недоступне у цьому браузері. Спробуйте Chrome, Edge або Safari.");
+    return false;
+  }
+  showStatus("");
+  try {
+    loadVoices();
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-US";
+    u.rate = rate;
+    const v = pickVoice();
+    if (v) u.voice = v;
+    u.onerror = e => {
+      if (e && (e.error === "canceled" || e.error === "interrupted")) return;
+      showStatus("Не вдалося відтворити звук. Перевірте гучність і налаштування браузера та спробуйте ще раз.");
+    };
+    window.speechSynthesis.speak(u);
+    return true;
+  } catch (err) {
+    showStatus("Сталася помилка озвучення. Спробуйте ще раз.");
+    return false;
+  }
+}
+if (synthOK) {
+  loadVoices();
+  if ("onvoiceschanged" in window.speechSynthesis) {
+    window.speechSynthesis.addEventListener("voiceschanged", loadVoices);
+  }
+}
+
+/* ---------- Інтерфейс ---------- */
+const tabsEl = document.getElementById("tabs");
+const cardsEl = document.getElementById("cards");
+const learnTitle = document.getElementById("learnTitle");
+const learnSec = document.getElementById("learn");
+const practiceSec = document.getElementById("practice");
+const modeLearn = document.getElementById("modeLearn");
+const modePractice = document.getElementById("modePractice");
+let theme = THEMES[0];
+let mode = "learn";
+let pIndex = 0;
+
+const byTheme = t => PHRASES.filter(p => p.theme === t);
+
+function renderTabs() {
+  tabsEl.innerHTML = "";
+  THEMES.forEach(t => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = t;
+    b.setAttribute("aria-pressed", String(t === theme));
+    b.addEventListener("click", () => { theme = t; pIndex = 0; render(); });
+    tabsEl.appendChild(b);
+  });
+}
+
+function renderCards() {
+  learnTitle.textContent = "Тема: " + theme;
+  cardsEl.innerHTML = "";
+  byTheme(theme).forEach(p => {
+    const li = document.createElement("li");
+    li.className = "card";
+    const en = document.createElement("p"); en.className = "en"; en.lang = "en"; en.textContent = p.en;
+    const uk = document.createElement("p"); uk.className = "uk"; uk.textContent = p.uk;
+    const tip = document.createElement("p"); tip.className = "tip"; tip.textContent = "Підказка: " + p.tip;
+    const act = document.createElement("div"); act.className = "actions";
+    const b1 = document.createElement("button");
+    b1.type = "button"; b1.className = "play"; b1.textContent = "Прослухати";
+    b1.setAttribute("aria-label", "Прослухати фразу: " + p.en);
+    b1.dataset.text = p.en; b1.dataset.rate = RATE_NORMAL;
+    b1.addEventListener("click", () => speak(p.en, RATE_NORMAL));
+    const b2 = document.createElement("button");
+    b2.type = "button"; b2.className = "slow"; b2.textContent = "Повільно";
+    b2.setAttribute("aria-label", "Прослухати повільно: " + p.en);
+    b2.dataset.text = p.en; b2.dataset.rate = RATE_SLOW;
+    b2.addEventListener("click", () => speak(p.en, RATE_SLOW));
+    act.append(b1, b2);
+    li.append(en, uk, tip, act);
+    cardsEl.appendChild(li);
+  });
+}
+
+const pEn = document.getElementById("pEn"), pUk = document.getElementById("pUk"),
+      pTip = document.getElementById("pTip"), pAnswer = document.getElementById("pAnswer"),
+      pHidden = document.getElementById("pHidden"), pCount = document.getElementById("pCount"),
+      pShow = document.getElementById("pShow");
+
+function currentPhrase() { const l = byTheme(theme); return l[pIndex % l.length]; }
+
+function renderPractice() {
+  const l = byTheme(theme), p = currentPhrase();
+  pCount.textContent = "Тема: " + theme + " · Фраза " + (pIndex % l.length + 1) + " з " + l.length;
+  pEn.textContent = p.en; pUk.textContent = p.uk; pTip.textContent = "Підказка: " + p.tip;
+  hideAnswer();
+}
+function hideAnswer() {
+  pAnswer.classList.add("hidden");
+  pHidden.classList.remove("hidden");
+  pShow.setAttribute("aria-expanded", "false");
+}
+function showAnswer() {
+  pAnswer.classList.remove("hidden");
+  pHidden.classList.add("hidden");
+  pShow.setAttribute("aria-expanded", "true");
+}
+
+document.getElementById("pPlay").addEventListener("click", () => speak(currentPhrase().en, RATE_NORMAL));
+document.getElementById("pSlow").addEventListener("click", () => speak(currentPhrase().en, RATE_SLOW));
+pShow.addEventListener("click", showAnswer);
+document.getElementById("pNext").addEventListener("click", () => {
+  pIndex = (pIndex + 1) % byTheme(theme).length;
+  if (synthOK) window.speechSynthesis.cancel();
+  renderPractice();
+});
+
+function setMode(m) {
+  mode = m;
+  modeLearn.setAttribute("aria-pressed", String(m === "learn"));
+  modePractice.setAttribute("aria-pressed", String(m === "practice"));
+  learnSec.classList.toggle("hidden", m !== "learn");
+  practiceSec.classList.toggle("hidden", m !== "practice");
+  render();
+}
+modeLearn.addEventListener("click", () => setMode("learn"));
+modePractice.addEventListener("click", () => setMode("practice"));
+
+function render() {
+  renderTabs();
+  if (mode === "learn") renderCards(); else renderPractice();
+}
+render();
+
+/* Самоперевірка: window.selfTest() у консолі */
+window.selfTest = function () {
+  const r = {};
+  THEMES.forEach(t => r[t] = byTheme(t).length);
+  r.total = PHRASES.length;
+  r.uniqueEn = new Set(PHRASES.map(p => p.en)).size;
+  r.slowLessThanNormal = RATE_SLOW < RATE_NORMAL;
+  return r;
+};
+</script>
+</body>
+</html>
