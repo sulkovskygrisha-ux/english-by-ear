@@ -8,61 +8,76 @@
 *,*::before,*::after{box-sizing:border-box}
 html,body{margin:0;max-width:100%;overflow-x:hidden}
 body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:#f3f6fb;color:#1b2434;line-height:1.45}
-header{background:#1f4fd8;color:#fff;padding:20px 16px 12px}
-header h1{margin:0 0 4px;font-size:1.5rem}
-header p{margin:0;opacity:.9}
+header{background:#1f4fd8;color:#fff;padding:20px 16px 14px}
+header h1{margin:0 0 4px;font-size:1.6rem}
+header p{margin:0;opacity:.92}
 .wrap{max-width:1100px;margin:0 auto;padding:0 12px}
-.tabs{position:sticky;top:0;z-index:5;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.08)}
-.tabs .wrap{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;-webkit-overflow-scrolling:touch}
+header .wrap{padding:0}
 button{font:inherit;min-height:48px;padding:10px 16px;border-radius:12px;border:2px solid #1f4fd8;background:#fff;color:#1f4fd8;cursor:pointer;font-weight:600}
 button:hover{background:#e8eefc}
-button:focus-visible,select:focus-visible{outline:3px solid #ff9f1c;outline-offset:2px}
-.tabs button{flex:0 0 auto;white-space:nowrap;border-color:#c5d0ea;color:#35435f}
-.tabs button[aria-pressed="true"]{background:#1f4fd8;border-color:#1f4fd8;color:#fff;box-shadow:inset 0 -4px 0 #ff9f1c}
-.modebar{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
-.modebar button[aria-pressed="true"]{background:#1f4fd8;color:#fff}
-.voicebar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 8px}
-.voicebar select{font:inherit;min-height:48px;padding:8px 12px;border-radius:12px;border:2px solid #1f4fd8;background:#fff;max-width:100%;flex:1 1 220px}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #ff9f1c;outline-offset:2px}
+.views{position:sticky;top:0;z-index:5;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.views .wrap{display:flex;gap:8px;overflow-x:auto;padding:10px 12px}
+.views button{flex:1 0 auto;white-space:nowrap;border-color:#c5d0ea;color:#35435f}
+.views button[aria-pressed="true"]{background:#1f4fd8;border-color:#1f4fd8;color:#fff;box-shadow:inset 0 -4px 0 #ff9f1c}
+.voicebar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 8px}
+.voicebar label{font-weight:600}
+select,input[type=search]{font:inherit;min-height:48px;padding:8px 12px;border-radius:12px;border:2px solid #1f4fd8;background:#fff;max-width:100%;color:#1b2434}
+.voicebar select{flex:1 1 220px}
+input[type=search]{width:100%}
 .hint{margin:0 0 8px;color:#8a1c1c;font-size:.95rem}
 #status{margin:8px 0;padding:10px 14px;border-radius:10px;background:#fff3cd;color:#664d03;display:none}
 #status.show{display:block}
-.grid{display:grid;grid-template-columns:1fr;gap:14px;padding-bottom:32px;list-style:none;margin:0;padding-left:0}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 8px;-webkit-overflow-scrolling:touch}
+.chips button{flex:0 0 auto;white-space:nowrap;border-color:#c5d0ea;color:#35435f;min-height:48px}
+.chips button[aria-pressed="true"]{background:#1f4fd8;border-color:#1f4fd8;color:#fff;box-shadow:inset 0 -4px 0 #ff9f1c}
+.chips.groups button[aria-pressed="true"]{background:#173ca8}
+.count{color:#5b6780;margin:8px 0}
+.grid{display:grid;grid-template-columns:1fr;gap:14px;list-style:none;margin:0 0 16px;padding:0}
 @media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
-.card{background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(20,40,90,.1);display:flex;flex-direction:column;gap:8px;min-width:0}
-.en{font-size:1.5rem;font-weight:700;margin:0;overflow-wrap:anywhere}
+.card{background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(20,40,90,.1);display:flex;flex-direction:column;gap:6px;min-width:0}
+.badge{align-self:flex-start;font-size:.8rem;background:#e8eefc;color:#173ca8;border-radius:999px;padding:2px 10px}
+.en{font-size:1.45rem;font-weight:700;margin:0;overflow-wrap:anywhere}
 .uk{margin:0;font-size:1.05rem;color:#35435f}
-.tip{margin:0;font-size:.92rem;color:#5a4a00;background:#fff8dc;border-radius:8px;padding:6px 10px}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
-.actions button{flex:1 1 120px}
+.example{background:#f3f6fb;border-radius:10px;padding:8px 10px;margin-top:4px}
+.example .en{font-size:1.05rem;font-weight:600}
+.example .uk{font-size:.95rem}
+.label{margin:6px 0 0;font-size:.85rem;font-weight:700;color:#5b6780;text-transform:uppercase;letter-spacing:.03em}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.actions button{flex:1 1 110px}
 .slow{background:#1f4fd8;color:#fff}
 .slow:hover{background:#173ca8}
-.practice{background:#fff;border-radius:16px;padding:20px 16px;box-shadow:0 2px 8px rgba(20,40,90,.1);margin-bottom:32px}
-.practice .count{color:#5b6780;margin:0 0 8px}
-.hidden{display:none!important}
-.answer{margin-top:12px}
-.placeholder{font-size:1.2rem;color:#5b6780;margin:8px 0}
 .primary{background:#1f4fd8;color:#fff}
 .primary:hover{background:#173ca8}
+.more{display:block;margin:0 auto 32px}
+.panel{background:#fff;border-radius:16px;padding:20px 16px;box-shadow:0 2px 8px rgba(20,40,90,.1);margin-bottom:32px}
+.placeholder{font-size:1.15rem;color:#5b6780;margin:8px 0}
+.answer{margin-top:12px}
+.situation{margin:0;font-size:1.05rem}
+.reveal{margin-top:6px;border-left:4px solid #ff9f1c;padding-left:10px}
+.hidden{display:none!important}
+h2{margin:16px 0 8px}
+.nores{padding:20px;text-align:center;color:#5b6780}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
     <h1>English by Ear</h1>
-    <p>Слухайте короткі фрази, розумійте їх і повторюйте вголос. Рівень A1–A2.</p>
+    <p>Лексика рівня B1 для роботи й повсякденного спілкування: слухайте, розумійте, говоріть.</p>
   </div>
 </header>
 
-<nav class="tabs" aria-label="Теми">
-  <div class="wrap" id="tabs" role="group"></div>
+<nav class="views" aria-label="Розділи">
+  <div class="wrap" role="group">
+    <button type="button" id="viewWords" aria-pressed="true">Словник</button>
+    <button type="button" id="viewSpeak" aria-pressed="false">Говоріння</button>
+    <button type="button" id="viewPractice" aria-pressed="false">Перевір себе</button>
+  </div>
 </nav>
 
 <main class="wrap">
-  <div class="modebar" role="group" aria-label="Режим">
-    <button type="button" id="modeLearn" aria-pressed="true">Вчити фрази</button>
-    <button type="button" id="modePractice" aria-pressed="false">Перевір себе</button>
-  </div>
   <div class="voicebar">
     <label for="voiceSel">Голос озвучення:</label>
     <select id="voiceSel"><option>Завантаження голосів…</option></select>
@@ -70,27 +85,46 @@ button:focus-visible,select:focus-visible{outline:3px solid #ff9f1c;outline-offs
   <p id="voiceHint" class="hint" aria-live="polite"></p>
   <div id="status" role="alert" aria-live="assertive"></div>
 
-  <section id="learn" aria-label="Список фраз">
-    <h2 id="learnTitle"></h2>
+  <section id="secWords" aria-label="Словник">
+    <label for="search" class="label">Пошук англійською або українською</label>
+    <input type="search" id="search" placeholder="Наприклад: deadline, зустріч, take over" autocomplete="off">
+    <div class="chips groups" id="groupChips" role="group" aria-label="Розділ лексики"></div>
+    <div class="chips" id="themeChips" role="group" aria-label="Теми"></div>
+    <p class="count" id="wCount" aria-live="polite"></p>
     <ul class="grid" id="cards"></ul>
+    <button type="button" class="more hidden" id="moreBtn">Показати ще</button>
   </section>
 
-  <section id="practice" class="hidden" aria-label="Тренування">
+  <section id="secSpeak" class="hidden" aria-label="Говоріння">
+    <h2>Діалоги й завдання на говоріння</h2>
+    <p class="count">Прочитайте ситуацію, відповідайте уголос англійською, а потім відкрийте зразок і послухайте його.</p>
+    <ul class="grid" id="tasks"></ul>
+  </section>
+
+  <section id="secPractice" class="hidden" aria-label="Перевір себе">
     <h2>Перевір себе</h2>
-    <div class="practice">
+    <label for="pTheme" class="label">Тема для тренування</label>
+    <select id="pTheme"></select>
+    <div class="panel" style="margin-top:12px">
       <p class="count" id="pCount" aria-live="polite"></p>
-      <p class="placeholder" id="pHidden">Послухайте фразу, спробуйте зрозуміти її та повторіть уголос.</p>
+      <p class="placeholder" id="pHidden">Послухайте слово й речення, спробуйте зрозуміти їх і повторіть уголос.</p>
+      <p class="label">Слово або вираз</p>
       <div class="actions">
-        <button type="button" id="pPlay" aria-label="Прослухати фразу у звичайному темпі">Прослухати</button>
-        <button type="button" id="pSlow" class="slow" aria-label="Прослухати фразу повільно">Повільно</button>
+        <button type="button" id="pWordPlay" aria-label="Прослухати слово у звичайному темпі">Прослухати</button>
+        <button type="button" id="pWordSlow" class="slow" aria-label="Прослухати слово повільно">Повільно</button>
+      </div>
+      <p class="label">Речення</p>
+      <div class="actions">
+        <button type="button" id="pExPlay" aria-label="Прослухати речення у звичайному темпі">Прослухати</button>
+        <button type="button" id="pExSlow" class="slow" aria-label="Прослухати речення повільно">Повільно</button>
       </div>
       <div class="answer hidden" id="pAnswer" aria-live="polite">
         <p class="en" id="pEn"></p>
         <p class="uk" id="pUk"></p>
-        <p class="tip" id="pTip"></p>
+        <div class="example"><p class="en" id="pEx"></p><p class="uk" id="pExUk"></p></div>
       </div>
-      <div class="actions" style="margin-top:12px">
-        <button type="button" id="pShow" class="primary">Показати фразу й переклад</button>
+      <div class="actions" style="margin-top:14px">
+        <button type="button" id="pShow" class="primary" aria-expanded="false">Показати фразу й переклад</button>
         <button type="button" id="pNext">Наступна фраза</button>
       </div>
     </div>
@@ -98,153 +132,754 @@ button:focus-visible,select:focus-visible{outline:3px solid #ff9f1c;outline-offs
 </main>
 
 <script>
-const THEMES = ["Знайомство", "Магазин", "Кафе", "Транспорт", "Подорожі"];
 const RATE_NORMAL = 0.95, RATE_SLOW = 0.75;
+const PAGE = 48;
+const GROUPS = { work: "Робота", daily: "Повсякденне" };
 
-const PHRASES = [
-// Знайомство
-{ id: 1, theme: "Знайомство", en: "Hello, my name is Maria.", uk: "Привіт, мене звати Марія.", tip: "Name — [нейм]." },
-{ id: 2, theme: "Знайомство", en: "Nice to meet you.", uk: "Приємно познайомитися.", tip: "Meet — [міт], довгий звук [і]." },
-{ id: 3, theme: "Знайомство", en: "What is your name?", uk: "Як вас звати?", tip: "Наголос на name; what — [вот]." },
-{ id: 4, theme: "Знайомство", en: "How are you today?", uk: "Як ви сьогодні?", tip: "How — [хау], are майже не вимовляється чітко." },
-{ id: 5, theme: "Знайомство", en: "I'm fine, thank you.", uk: "Я добре, дякую.", tip: "Thank — кінчик язика між зубами." },
-{ id: 6, theme: "Знайомство", en: "Where are you from?", uk: "Звідки ви?", tip: "From — [фром], наголос на where." },
-{ id: 7, theme: "Знайомство", en: "I'm from Ukraine.", uk: "Я з України.", tip: "Ukraine — [юкрейн], наголос на другому складі." },
-{ id: 8, theme: "Знайомство", en: "I live in Kyiv.", uk: "Я живу в Києві.", tip: "Live — короткий [і]: [лів]." },
-{ id: 9, theme: "Знайомство", en: "How old are you?", uk: "Скільки вам років?", tip: "Old — [оулд], звук [оу]." },
-{ id: 10, theme: "Знайомство", en: "I'm twenty-five years old.", uk: "Мені двадцять п'ять років.", tip: "Twenty — [твенті]; years — [єрз]." },
-{ id: 11, theme: "Знайомство", en: "Do you speak English?", uk: "Ви говорите англійською?", tip: "Speak — [спік], довгий [і]." },
-{ id: 12, theme: "Знайомство", en: "I speak a little English.", uk: "Я трохи говорю англійською.", tip: "Little — [літл], м'який кінець." },
-{ id: 13, theme: "Знайомство", en: "Could you repeat that, please?", uk: "Повторіть, будь ласка.", tip: "Could — [куд], літера l не читається." },
-{ id: 14, theme: "Знайомство", en: "Please speak more slowly.", uk: "Говоріть, будь ласка, повільніше.", tip: "Slowly — [слоулі]." },
-{ id: 15, theme: "Знайомство", en: "I don't understand.", uk: "Я не розумію.", tip: "Наголос на -stand; don't — [доунт]." },
-{ id: 16, theme: "Знайомство", en: "What do you do?", uk: "Ким ви працюєте?", tip: "Питання про роботу; do — [ду]." },
-{ id: 17, theme: "Знайомство", en: "I work in an office.", uk: "Я працюю в офісі.", tip: "Work — [ворк], не [ворк] з різким о." },
-{ id: 18, theme: "Знайомство", en: "I'm a student.", uk: "Я студент.", tip: "Student — [стьюдент], наголос на першому складі." },
-{ id: 19, theme: "Знайомство", en: "This is my friend Tom.", uk: "Це мій друг Том.", tip: "This — [зіс], язик між зубами." },
-{ id: 20, theme: "Знайомство", en: "Do you have any brothers or sisters?", uk: "У вас є брати чи сестри?", tip: "Brothers — [брозерз], th дзвінкий." },
-{ id: 21, theme: "Знайомство", en: "I have a big family.", uk: "У мене велика родина.", tip: "Family — [фемілі], три склади." },
-{ id: 22, theme: "Знайомство", en: "What do you like to do?", uk: "Що ви любите робити?", tip: "Like — [лайк]." },
-{ id: 23, theme: "Знайомство", en: "See you tomorrow.", uk: "До завтра.", tip: "Tomorrow — [тумороу], наголос на -mo-." },
-{ id: 24, theme: "Знайомство", en: "Have a good day!", uk: "Гарного вам дня!", tip: "Have — [хев]; good — короткий [у]." },
-// Магазин
-{ id: 25, theme: "Магазин", en: "How much is this?", uk: "Скільки це коштує?", tip: "Much — [мач]." },
-{ id: 26, theme: "Магазин", en: "How much are these apples?", uk: "Скільки коштують ці яблука?", tip: "These — довгий [і], apples — [еплз]." },
-{ id: 27, theme: "Магазин", en: "Do you have this in a larger size?", uk: "Є це більшого розміру?", tip: "Larger — [ладжер]; size — [сайз]." },
-{ id: 28, theme: "Магазин", en: "Can I try it on?", uk: "Можна це приміряти?", tip: "Try it on звучить злито: [трай іт он]." },
-{ id: 29, theme: "Магазин", en: "Where is the fitting room?", uk: "Де примірочна?", tip: "Fitting — [фітінг]." },
-{ id: 30, theme: "Магазин", en: "I'm just looking, thanks.", uk: "Я просто дивлюся, дякую.", tip: "Looking — короткий [у]: [лукінг]." },
-{ id: 31, theme: "Магазин", en: "I'll take it.", uk: "Я це візьму.", tip: "I'll — [айл], злито з take." },
-{ id: 32, theme: "Магазин", en: "Do you accept credit cards?", uk: "Ви приймаєте кредитні картки?", tip: "Accept — [ексепт], наголос на -cept." },
-{ id: 33, theme: "Магазин", en: "Can I pay by card?", uk: "Можна заплатити карткою?", tip: "Card — [кард], довгий [а]." },
-{ id: 34, theme: "Магазин", en: "I'd like to pay in cash.", uk: "Я хочу заплатити готівкою.", tip: "I'd like — [айд лайк]." },
-{ id: 35, theme: "Магазин", en: "Could I have a bag, please?", uk: "Можна пакет, будь ласка?", tip: "Bag — [бег], короткий [е]." },
-{ id: 36, theme: "Магазин", en: "Do you have a cheaper one?", uk: "Є щось дешевше?", tip: "Cheaper — [чіпер]." },
-{ id: 37, theme: "Магазин", en: "It's too expensive for me.", uk: "Це для мене надто дорого.", tip: "Expensive — [ікспенсів], наголос на -pen-." },
-{ id: 38, theme: "Магазин", en: "Is there a discount?", uk: "Є знижка?", tip: "Discount — [діскаунт], наголос на першому складі." },
-{ id: 39, theme: "Магазин", en: "Where can I find milk?", uk: "Де я можу знайти молоко?", tip: "Milk — [мілк], м'який [л]." },
-{ id: 40, theme: "Магазин", en: "What time do you close?", uk: "О котрій ви зачиняєтеся?", tip: "Close — [клоуз], в кінці [з]." },
-{ id: 41, theme: "Магазин", en: "Is this on sale?", uk: "Це зі знижкою?", tip: "Sale — [сейл]." },
-{ id: 42, theme: "Магазин", en: "Can I get a receipt, please?", uk: "Можна чек, будь ласка?", tip: "Receipt — [рісіт], p не читається." },
-{ id: 43, theme: "Магазин", en: "I need a new pair of shoes.", uk: "Мені потрібна нова пара взуття.", tip: "Shoes — [шуз]." },
-{ id: 44, theme: "Магазин", en: "Do you have this in blue?", uk: "Є це в синьому кольорі?", tip: "Blue — [блу], довгий [у]." },
-{ id: 45, theme: "Магазин", en: "It doesn't fit me.", uk: "Це мені не підходить за розміром.", tip: "Fit — короткий [і]: [фіт]." },
-{ id: 46, theme: "Магазин", en: "Can I return this?", uk: "Можна це повернути?", tip: "Return — [рітерн], наголос на -turn." },
-{ id: 47, theme: "Магазин", en: "Keep the change.", uk: "Решту залиште собі.", tip: "Change — [чейндж]." },
-{ id: 48, theme: "Магазин", en: "Thank you for your help.", uk: "Дякую за допомогу.", tip: "Help — [хелп], звук [х] видихом." },
-// Кафе
-{ id: 49, theme: "Кафе", en: "A table for two, please.", uk: "Столик на двох, будь ласка.", tip: "Table — [тейбл], наголос на першому складі." },
-{ id: 50, theme: "Кафе", en: "Can I see the menu, please?", uk: "Можна меню, будь ласка?", tip: "Menu — [меню], наголос на me-." },
-{ id: 51, theme: "Кафе", en: "What do you recommend?", uk: "Що ви порадите?", tip: "Recommend — наголос на -mend." },
-{ id: 52, theme: "Кафе", en: "I'd like a cup of coffee.", uk: "Я б хотів чашку кави.", tip: "Coffee — [кофі], наголос на co-." },
-{ id: 53, theme: "Кафе", en: "Can I have a glass of water?", uk: "Можна склянку води?", tip: "Water — [вотер]." },
-{ id: 54, theme: "Кафе", en: "Tea with milk, please.", uk: "Чай з молоком, будь ласка.", tip: "Tea — [ті], довгий звук." },
-{ id: 55, theme: "Кафе", en: "I'll have the chicken soup.", uk: "Я візьму курячий суп.", tip: "Chicken — [чікін]." },
-{ id: 56, theme: "Кафе", en: "Is it spicy?", uk: "Це гостре?", tip: "Spicy — [спайсі]." },
-{ id: 57, theme: "Кафе", en: "I'm allergic to nuts.", uk: "У мене алергія на горіхи.", tip: "Allergic — [елерджік], наголос на -ler-." },
-{ id: 58, theme: "Кафе", en: "No sugar, please.", uk: "Без цукру, будь ласка.", tip: "Sugar — [шугер], початок як ш." },
-{ id: 59, theme: "Кафе", en: "Could we have some more bread?", uk: "Можна ще хліба?", tip: "Bread — [бред], короткий [е]." },
-{ id: 60, theme: "Кафе", en: "This is delicious!", uk: "Це дуже смачно!", tip: "Delicious — [делішес], наголос на -li-." },
-{ id: 61, theme: "Кафе", en: "Excuse me, we're ready to order.", uk: "Перепрошую, ми готові замовити.", tip: "Order — [ордер]." },
-{ id: 62, theme: "Кафе", en: "Can I have the bill, please?", uk: "Можна рахунок, будь ласка?", tip: "Bill — [біл], короткий [і]." },
-{ id: 63, theme: "Кафе", en: "Is service included?", uk: "Обслуговування включено?", tip: "Service — [сервіс]." },
-{ id: 64, theme: "Кафе", en: "Separate checks, please.", uk: "Окремі рахунки, будь ласка.", tip: "Separate — [сепарет]." },
-{ id: 65, theme: "Кафе", en: "I'm vegetarian.", uk: "Я вегетаріанець.", tip: "Vegetarian — [веджітеріен]." },
-{ id: 66, theme: "Кафе", en: "Can I have it without onions?", uk: "Можна без цибулі?", tip: "Onions — [анйенз]." },
-{ id: 67, theme: "Кафе", en: "Do you have any desserts?", uk: "У вас є десерти?", tip: "Dessert — [дізерт], наголос на -sert." },
-{ id: 68, theme: "Кафе", en: "A slice of apple pie, please.", uk: "Шматок яблучного пирога, будь ласка.", tip: "Slice — [слайс]; pie — [пай]." },
-{ id: 69, theme: "Кафе", en: "Could I get a takeaway?", uk: "Можна з собою?", tip: "Takeaway — [тейкевей]." },
-{ id: 70, theme: "Кафе", en: "The soup is too hot.", uk: "Суп занадто гарячий.", tip: "Hot — короткий [о]." },
-{ id: 71, theme: "Кафе", en: "Could you bring me a fork?", uk: "Принесіть мені, будь ласка, виделку.", tip: "Fork — [форк]." },
-{ id: 72, theme: "Кафе", en: "Is this seat taken?", uk: "Це місце вільне?", tip: "Seat — довгий [і]: [сіт]." },
-// Транспорт
-{ id: 73, theme: "Транспорт", en: "Where is the bus stop?", uk: "Де автобусна зупинка?", tip: "Bus — [бас], короткий [а]." },
-{ id: 74, theme: "Транспорт", en: "Which bus goes to the center?", uk: "Який автобус їде до центру?", tip: "Which — [віч]." },
-{ id: 75, theme: "Транспорт", en: "Does this train go to Lviv?", uk: "Цей потяг їде до Львова?", tip: "Train — [трейн]." },
-{ id: 76, theme: "Транспорт", en: "One ticket to the airport, please.", uk: "Один квиток до аеропорту, будь ласка.", tip: "Ticket — [тікіт]; airport — [ерпорт]." },
-{ id: 77, theme: "Транспорт", en: "How much is a return ticket?", uk: "Скільки коштує квиток туди й назад?", tip: "Return — [рітерн]." },
-{ id: 78, theme: "Транспорт", en: "What time does the train leave?", uk: "О котрій відправляється потяг?", tip: "Leave — довгий [і]: [лів]." },
-{ id: 79, theme: "Транспорт", en: "What time does it arrive?", uk: "О котрій він прибуває?", tip: "Arrive — [еррайв], наголос на -rive." },
-{ id: 80, theme: "Транспорт", en: "Which platform is it?", uk: "Яка це платформа?", tip: "Platform — [платформ]." },
-{ id: 81, theme: "Транспорт", en: "Is this the right way to the metro?", uk: "Це правильна дорога до метро?", tip: "Right — [райт], w не читається." },
-{ id: 82, theme: "Транспорт", en: "Excuse me, is this seat free?", uk: "Перепрошую, це місце вільне?", tip: "Free — [фрі], довгий [і]." },
-{ id: 83, theme: "Транспорт", en: "Please stop here.", uk: "Зупиніться тут, будь ласка.", tip: "Here — [хієр]." },
-{ id: 84, theme: "Транспорт", en: "Take me to this address, please.", uk: "Відвезіть мене за цією адресою.", tip: "Address — [едрес], наголос на другому складі в американській." },
-{ id: 85, theme: "Транспорт", en: "How long does it take?", uk: "Скільки це триває?", tip: "Take — [тейк]." },
-{ id: 86, theme: "Транспорт", en: "How far is it from here?", uk: "Як далеко це звідси?", tip: "Far — [фар], довгий [а]." },
-{ id: 87, theme: "Транспорт", en: "Turn left at the corner.", uk: "На розі поверніть ліворуч.", tip: "Turn — [терн]; left — [лефт]." },
-{ id: 88, theme: "Транспорт", en: "Go straight ahead.", uk: "Ідіть прямо.", tip: "Straight — [стрейт]." },
-{ id: 89, theme: "Транспорт", en: "Turn right at the traffic lights.", uk: "На світлофорі поверніть праворуч.", tip: "Traffic — [трефік]." },
-{ id: 90, theme: "Транспорт", en: "I missed my bus.", uk: "Я запізнився на автобус.", tip: "Missed — [містт], кінцевий [т]." },
-{ id: 91, theme: "Транспорт", en: "The train is late.", uk: "Потяг запізнюється.", tip: "Late — [лейт]." },
-{ id: 92, theme: "Транспорт", en: "Where can I buy a ticket?", uk: "Де можна купити квиток?", tip: "Buy — [бай], літера u не читається." },
-{ id: 93, theme: "Транспорт", en: "Do I need to change trains?", uk: "Мені потрібна пересадка?", tip: "Change — [чейндж]." },
-{ id: 94, theme: "Транспорт", en: "Next stop, please.", uk: "Наступна зупинка, будь ласка.", tip: "Next — [некст], кінець злитий." },
-{ id: 95, theme: "Транспорт", en: "Can you call a taxi for me?", uk: "Можете викликати мені таксі?", tip: "Taxi — [тексі]." },
-{ id: 96, theme: "Транспорт", en: "I'm lost. Can you help me?", uk: "Я заблукав. Можете допомогти?", tip: "Lost — [лост]." },
-// Подорожі
-{ id: 97, theme: "Подорожі", en: "I have a reservation.", uk: "Я бронював номер.", tip: "Reservation — [резервейшн]." },
-{ id: 98, theme: "Подорожі", en: "Do you have any free rooms?", uk: "У вас є вільні номери?", tip: "Rooms — [румз]." },
-{ id: 99, theme: "Подорожі", en: "A single room for two nights, please.", uk: "Одномісний номер на дві ночі.", tip: "Night — [найт], gh не читається." },
-{ id: 100, theme: "Подорожі", en: "What time is check-out?", uk: "О котрій виселення?", tip: "Check-out — [чекаут]." },
-{ id: 101, theme: "Подорожі", en: "Is breakfast included?", uk: "Сніданок включено?", tip: "Breakfast — [брекфест], коротке [е]." },
-{ id: 102, theme: "Подорожі", en: "Where is the nearest pharmacy?", uk: "Де найближча аптека?", tip: "Pharmacy — [фармесі]." },
-{ id: 103, theme: "Подорожі", en: "Here is my passport.", uk: "Ось мій паспорт.", tip: "Passport — [песпорт]." },
-{ id: 104, theme: "Подорожі", en: "I'm here on holiday.", uk: "Я тут у відпустці.", tip: "Holiday — [холідей]." },
-{ id: 105, theme: "Подорожі", en: "I'll stay for one week.", uk: "Я пробуду тиждень.", tip: "Week — [вік]." },
-{ id: 106, theme: "Подорожі", en: "Where is my gate?", uk: "Де мій вихід на посадку?", tip: "Gate — [гейт]." },
-{ id: 107, theme: "Подорожі", en: "My flight is at ten o'clock.", uk: "Мій рейс о десятій.", tip: "Flight — [флайт]." },
-{ id: 108, theme: "Подорожі", en: "Where can I get my luggage?", uk: "Де я можу забрати багаж?", tip: "Luggage — [лагідж]." },
-{ id: 109, theme: "Подорожі", en: "My suitcase is missing.", uk: "Моя валіза зникла.", tip: "Suitcase — [сутькейс]." },
-{ id: 110, theme: "Подорожі", en: "Can you take a photo of us?", uk: "Можете нас сфотографувати?", tip: "Photo — [фоутоу]." },
-{ id: 111, theme: "Подорожі", en: "What is there to see here?", uk: "Що тут можна подивитися?", tip: "See — [сі], довгий звук." },
-{ id: 112, theme: "Подорожі", en: "Is it far from the beach?", uk: "Це далеко від пляжу?", tip: "Beach — [бич], довгий [і]." },
-{ id: 113, theme: "Подорожі", en: "Do you have a map of the city?", uk: "У вас є карта міста?", tip: "Map — [меп]; city — [сіті]." },
-{ id: 114, theme: "Подорожі", en: "What is the weather like today?", uk: "Яка сьогодні погода?", tip: "Weather — [везер], th дзвінкий." },
-{ id: 115, theme: "Подорожі", en: "It's sunny and warm.", uk: "Сонячно й тепло.", tip: "Warm — [ворм]." },
-{ id: 116, theme: "Подорожі", en: "I need a doctor.", uk: "Мені потрібен лікар.", tip: "Doctor — [доктер]." },
-{ id: 117, theme: "Подорожі", en: "Can you speak more slowly?", uk: "Можете говорити повільніше?", tip: "More — [мор]." },
-{ id: 118, theme: "Подорожі", en: "Where is the toilet?", uk: "Де туалет?", tip: "Toilet — [тойлет]." },
-{ id: 119, theme: "Подорожі", en: "Is the Wi-Fi free here?", uk: "Тут безкоштовний Wi-Fi?", tip: "Wi-Fi — [вайфай]." },
-{ id: 120, theme: "Подорожі", en: "Thank you for everything. Goodbye!", uk: "Дякую за все. До побачення!", tip: "Everything — [еврісінг]." }
-];
+const DATA_RAW = `## W|Завдання та інструкції
+take care of|подбати про, зайнятися|I'll take care of the report today.|Я сьогодні займуся звітом.
+carry out|виконати|Please carry out these instructions step by step.|Будь ласка, виконайте ці інструкції крок за кроком.
+get started|розпочати|Let's get started with the first task.|Розпочнімо з першого завдання.
+go through|переглянути, пройтися по|Let's go through the list together.|Пройдімося по списку разом.
+fill in|заповнити|Please fill in this form.|Будь ласка, заповніть цю форму.
+set up|налаштувати, створити|I need to set up a new account.|Мені потрібно створити новий обліковий запис.
+figure out|розібратися, зʼясувати|I can't figure out how this works.|Я не можу зрозуміти, як це працює.
+check over|перевірити|Could you check over my work?|Не могли б ви перевірити мою роботу?
+look into|дослідити, розібратися|I'll look into this issue right away.|Я одразу розберуся з цією проблемою.
+follow the instructions|дотримуватися інструкцій|Please follow the instructions carefully.|Будь ласка, уважно дотримуйтесь інструкцій.
+step by step|крок за кроком|Can you explain it step by step?|Можете пояснити це крок за кроком?
+priority|пріоритет|This task is our top priority.|Це завдання — наш головний пріоритет.
+responsibility|відповідальність|Customer support is Maria's responsibility.|Підтримка клієнтів — відповідальність Марії.
+be in charge of|відповідати за|Who is in charge of this project?|Хто відповідає за цей проєкт?
+hand over|передати|I'll hand over the files tomorrow.|Я передам файли завтра.
+take over|перейняти|Can you take over this task from me?|Можеш перейняти це завдання від мене?
+instructions|інструкції|The instructions are on the first page.|Інструкції на першій сторінці.
+requirement|вимога|This is a basic requirement for the job.|Це базова вимога для цієї роботи.
+deliverable|результат роботи|What is the main deliverable this week?|Який основний результат роботи цього тижня?
+task list|список завдань|I update my task list every morning.|Я оновлюю список завдань щоранку.
+to-do list|перелік справ|My to-do list is very long today.|Мій перелік справ сьогодні дуже довгий.
+cross off|викреслити|I crossed off three tasks already.|Я вже викреслила три завдання.
+work on|працювати над|I'm working on a new presentation.|Я працюю над новою презентацією.
+make sure|переконатися|Please make sure everything is ready.|Будь ласка, переконайтеся, що все готово.
+double-check|перевірити ще раз|I always double-check the numbers.|Я завжди ще раз перевіряю цифри.
+in detail|детально|Please explain the process in detail.|Будь ласка, поясніть процес детально.
+clarify|уточнити|Could you clarify the second point?|Не могли б ви уточнити другий пункт?
+be responsible for|бути відповідальним за|I'm responsible for the weekly report.|Я відповідаю за щотижневий звіт.
+delegate|делегувати|A good manager knows how to delegate.|Хороший керівник вміє делегувати.
+guideline|настанова, правило|We follow the company guidelines.|Ми дотримуємося правил компанії.
+procedure|процедура|What is the procedure for refunds?|Яка процедура повернення коштів?
+template|шаблон|Use this template for all emails.|Використовуйте цей шаблон для всіх листів.
+attach|прикріпити|I attached the file to the email.|Я прикріпила файл до листа.
+send over|надіслати|Can you send over the details?|Можете надіслати подробиці?
+keep track of|стежити за, вести облік|I keep track of all my tasks here.|Я веду облік усіх завдань тут.
+sort out|владнати, розібратися|We need to sort out this problem.|Нам потрібно владнати цю проблему.
+finish off|завершити|I want to finish off this task today.|Я хочу завершити це завдання сьогодні.
+wrap up|підбити підсумки, завершити|Let's wrap up the meeting.|Завершімо зустріч.
+tick off|поставити галочку|I ticked off everything on the list.|Я поставила галочки навпроти всього в списку.
+as soon as possible|якнайшвидше|Please reply as soon as possible.|Будь ласка, дайте відповідь якнайшвидше.
+by the end of the day|до кінця дня|I'll send it by the end of the day.|Я надішлю це до кінця дня.
+in progress|у процесі|The task is still in progress.|Завдання ще виконується.
+on hold|призупинено|The project is on hold for now.|Проєкт наразі призупинено.
+completed|завершений|All tasks are completed.|Усі завдання завершено.
+pending|такий, що очікує розгляду|Your request is still pending.|Ваш запит ще очікує розгляду.
+approve|схвалити, затвердити|My manager has to approve it first.|Спершу це має схвалити мій керівник.
+sign off on|остаточно затвердити|Please sign off on this document.|Будь ласка, остаточно затвердіть цей документ.
+walk someone through|покроково пояснити|Can you walk me through the process?|Можете покроково пояснити мені процес?
+get the hang of|освоїтися з|I'm getting the hang of this software.|Я поступово освоюю цю програму.
+stick to|дотримуватися|Let's stick to the plan.|Дотримуймося плану.
+notice|помітити|Did you notice the mistake?|Ви помітили помилку?
+manual|посібник|Check the manual first.|Спершу перегляньте посібник.
+workflow|робочий процес|We changed our workflow last month.|Минулого місяця ми змінили робочий процес.
+pass on|передати далі|Please pass on this message to the team.|Будь ласка, передайте це повідомлення команді.
+take notes|робити нотатки|I take notes during every meeting.|Я роблю нотатки на кожній зустрічі.
+come up with|придумати|Can you come up with a better idea?|Ви можете придумати кращу ідею?
+## W|Графік і зміни
+schedule|графік, розклад|What is your schedule for tomorrow?|Який у вас розклад на завтра?
+shift|зміна|I work the morning shift this week.|Цього тижня я працюю в ранню зміну.
+night shift|нічна зміна|He is on the night shift today.|Сьогодні він у нічну зміну.
+day off|вихідний|Tomorrow is my day off.|Завтра в мене вихідний.
+swap shifts|помінятися змінами|Can we swap shifts on Friday?|Чи можемо ми помінятися змінами в пʼятницю?
+cover for|підмінити|Could you cover for me on Monday?|Ви могли б підмінити мене в понеділок?
+take time off|взяти відгул|I need to take some time off next week.|Мені потрібно взяти кілька вихідних наступного тижня.
+annual leave|щорічна відпустка|I have two weeks of annual leave left.|У мене залишилося два тижні щорічної відпустки.
+sick leave|лікарняний|She is on sick leave this week.|Цього тижня вона на лікарняному.
+working hours|робочі години|Our working hours are nine to five.|Наші робочі години — з дев'ятої до п'ятої.
+flexible hours|гнучкий графік|We have flexible hours in our team.|У нашій команді гнучкий графік.
+overtime|понаднормова робота|I worked overtime twice this week.|Цього тижня я двічі працював понаднормово.
+start late|почати пізніше|Can I start late tomorrow?|Чи можна мені завтра почати пізніше?
+finish early|закінчити раніше|I'd like to finish early on Thursday.|Я хотів би закінчити раніше в четвер.
+reschedule|перенести на інший час|Can we reschedule the meeting?|Чи можемо ми перенести зустріч?
+postpone|відкласти|Let's postpone it until next week.|Відкладімо це до наступного тижня.
+bring forward|перенести на раніший час|We need to bring the meeting forward.|Нам потрібно перенести зустріч на раніший час.
+push back|відсунути на пізніше|Can we push the deadline back a day?|Чи можна відсунути дедлайн на день?
+call off|скасувати|They called off the meeting.|Вони скасували зустріч.
+available|вільний, доступний|Are you available at three o'clock?|Ви вільні о третій годині?
+unavailable|недоступний|I'm unavailable until noon.|Я недоступний до полудня.
+free up|звільнити (час)|I'll try to free up some time.|Я спробую звільнити трохи часу.
+fit in|вписати в графік|I can fit you in at four.|Я можу вписати вас на четверту.
+book|забронювати, записати|Let's book a room for the meeting.|Забронюймо кімнату для зустрічі.
+appointment|домовлена зустріч, запис|I have an appointment at ten.|У мене домовлена зустріч на десяту.
+calendar|календар|Please check my calendar.|Будь ласка, перевірте мій календар.
+availability|доступність|Please send me your availability.|Будь ласка, надішліть мені, коли ви вільні.
+scheduling conflict|накладка в розкладі|I have a scheduling conflict on Monday.|У мене накладка в розкладі в понеділок.
+clash with|збігатися з|This meeting clashes with my lunch.|Ця зустріч збігається з моєю обідньою перервою.
+on call|черговий (на звʼязку)|I'm on call this weekend.|Цих вихідних я черговий.
+remote work|віддалена робота|We do remote work on Fridays.|У пʼятницю ми працюємо віддалено.
+work from home|працювати з дому|I work from home twice a week.|Я працюю з дому двічі на тиждень.
+in the office|в офісі|Will you be in the office tomorrow?|Ви завтра будете в офісі?
+break|перерва|Let's take a ten-minute break.|Зробімо десятихвилинну перерву.
+lunch break|обідня перерва|My lunch break starts at one.|Моя обідня перерва починається о першій.
+clock in|відмітити початок роботи|I clocked in at eight.|Я відмітила початок роботи о восьмій.
+clock out|відмітити кінець роботи|He clocked out early today.|Сьогодні він раніше відмітив кінець роботи.
+be late|запізнюватися|I'm sorry, I'm going to be late.|Вибачте, я запізнюся.
+run late|затримуватися|The meeting is running late.|Зустріч затримується.
+be on time|бути вчасно|Please be on time tomorrow.|Будь ласка, будьте завтра вчасно.
+in advance|заздалегідь|Please tell me in advance.|Будь ласка, скажіть мені заздалегідь.
+at short notice|у стислі терміни|I can't come at such short notice.|Я не можу прийти в такі стислі терміни.
+notify|повідомити|Please notify me about any changes.|Будь ласка, повідомляйте мені про будь-які зміни.
+change of plans|зміна планів|There's been a change of plans.|Відбулася зміна планів.
+roster|графік чергувань|The new roster is on the wall.|Новий графік чергувань висить на стіні.
+weekly|щотижневий|We have a weekly team meeting.|У нас щотижнева зустріч команди.
+daily|щоденний|I send a daily report to my manager.|Я щодня надсилаю звіт керівникові.
+public holiday|державне свято|Monday is a public holiday.|Понеділок — державне свято.
+take a day off|узяти вихідний|I'd like to take a day off on Friday.|Я хотіла б узяти вихідний у пʼятницю.
+cut short|скоротити|We had to cut the meeting short.|Нам довелося скоротити зустріч.
+leave early|піти раніше|Can I leave early today?|Чи можна мені піти раніше сьогодні?
+stay late|залишитися допізна|I have to stay late tonight.|Мені доведеться залишитися допізна сьогодні ввечері.
+be back|повернутися|I'll be back in ten minutes.|Я повернуся за десять хвилин.
+## W|Колеги й клієнти
+colleague|колега|My colleague helped me with the report.|Моя колега допомогла мені зі звітом.
+teammate|член команди|Every teammate has a clear role.|Кожен член команди має чітку роль.
+client|клієнт|Our client wants a quick answer.|Наш клієнт хоче швидку відповідь.
+customer|покупець, клієнт|The customer is waiting at the desk.|Клієнт чекає біля стійки.
+manager|керівник, менеджер|I'll ask my manager about it.|Я запитаю про це свого керівника.
+supervisor|безпосередній начальник|Please talk to my supervisor.|Будь ласка, поговоріть з моїм начальником.
+work together|працювати разом|We work together very well.|Ми дуже добре працюємо разом.
+cooperate|співпрацювати|It's easy to cooperate with Maria.|З Марією легко співпрацювати.
+team player|командний гравець|He is a real team player.|Він справжній командний гравець.
+get along with|ладнати з|I get along with all my colleagues.|Я ладнаю з усіма колегами.
+introduce|представити|Let me introduce you to our client.|Дозвольте представити вам нашого клієнта.
+welcome|вітати|Welcome to our team!|Ласкаво просимо до нашої команди!
+look forward to|з нетерпінням чекати|I look forward to working with you.|Я з нетерпінням чекаю на співпрацю з вами.
+keep in touch|залишатися на звʼязку|Let's keep in touch by email.|Залишаймося на звʼязку електронною поштою.
+get back to|відповісти пізніше|I'll get back to you tomorrow.|Я відповім вам завтра.
+follow up|уточнити, нагадати|I'm writing to follow up on my email.|Пишу, щоб нагадати про мій лист.
+update|оновлення; повідомити останні новини|Can you give me a quick update?|Можете коротко розповісти, що нового?
+keep someone posted|тримати в курсі|I'll keep you posted.|Я триматиму вас у курсі.
+let someone know|повідомити комусь|Please let me know if you need anything.|Будь ласка, повідомте мені, якщо вам щось потрібно.
+in touch with|на звʼязку з|I'm in touch with the client.|Я на звʼязку з клієнтом.
+feedback|відгук, зворотний звʼязок|Thank you for your feedback.|Дякую за ваш відгук.
+give feedback|дати відгук|Could you give me some feedback?|Не могли б ви дати мені відгук?
+suggestion|пропозиція|I have a suggestion for the team.|У мене є пропозиція для команди.
+agree with|погоджуватися з|I agree with you on that point.|Я погоджуюся з вами щодо цього.
+disagree|не погоджуватися|I disagree, and here's why.|Я не погоджуюся, і ось чому.
+good point|слушна думка|That's a good point.|Це слушна думка.
+on the same page|мати спільне розуміння|Let's make sure we're on the same page.|Переконаймося, що ми розуміємо все однаково.
+compromise|компроміс|We need to find a compromise.|Нам потрібно знайти компроміс.
+negotiate|вести переговори|We negotiated the price with the client.|Ми обговорили ціну з клієнтом.
+offer|пропозиція; пропонувати|We can offer a ten percent discount.|Ми можемо запропонувати знижку десять відсотків.
+expectation|очікування|The client has high expectations.|У клієнта високі очікування.
+satisfied|задоволений|Is the client satisfied with the result?|Клієнт задоволений результатом?
+complaint|скарга|We received a complaint yesterday.|Вчора ми отримали скаргу.
+apologize for|перепросити за|I apologize for the delay.|Перепрошую за затримку.
+inconvenience|незручність|We're sorry for the inconvenience.|Просимо вибачення за незручності.
+deal with|мати справу з, розв'язувати|I can deal with this complaint.|Я можу розібратися з цією скаргою.
+handle|упоратися з, обробити|Maria handles all our big clients.|Марія працює з усіма нашими великими клієнтами.
+reliable|надійний|He is a very reliable colleague.|Він дуже надійний колега.
+helpful|корисний, готовий допомогти|Everyone here is very helpful.|Усі тут дуже охоче допомагають.
+polite|ввічливий|Always be polite with customers.|Завжди будьте ввічливі з клієнтами.
+professional|професійний|She is very professional.|Вона дуже професійна.
+attend a meeting|бути присутнім на зустрічі|I have to attend a meeting at noon.|Мені потрібно бути на зустрічі опівдні.
+take part in|брати участь у|Will you take part in the workshop?|Ви братимете участь у воркшопі?
+share|ділитися|Let me share my screen.|Дозвольте мені показати свій екран.
+raise a question|порушити питання|I'd like to raise a question.|Я хотів би порушити одне питання.
+point out|зазначити, вказати на|I'd like to point out one thing.|Я хотіла б звернути увагу на одну річ.
+get to the point|перейти до суті|Let me get to the point.|Дозвольте мені перейти до суті.
+sum up|підсумувати|Let me sum up the main ideas.|Дозвольте підсумувати основні ідеї.
+meet the needs|задовольняти потреби|Our service meets the needs of our clients.|Наш сервіс задовольняє потреби клієнтів.
+account manager|менеджер із роботи з клієнтами|Our account manager will call you.|Наш менеджер із клієнтів зателефонує вам.
+business partner|діловий партнер|He is our business partner.|Він наш діловий партнер.
+contract|контракт|The client signed the contract today.|Клієнт підписав контракт сьогодні.
+agreement|угода, домовленість|We reached an agreement.|Ми дійшли згоди.
+proposal|комерційна пропозиція|I'll send you the proposal tomorrow.|Я надішлю вам пропозицію завтра.
+quote|цінова пропозиція|Could you send me a quote?|Не могли б ви надіслати мені розрахунок вартості?
+invoice|рахунок-фактура|I'll send the invoice today.|Я надішлю рахунок сьогодні.
+payment|оплата|We haven't received the payment yet.|Ми ще не отримали оплату.
+refund|повернення коштів|The customer asked for a refund.|Клієнт попросив повернути кошти.
+## W|Дзвінки й листи
+make a call|зателефонувати|I need to make a call to a client.|Мені потрібно зателефонувати клієнту.
+call back|передзвонити|Can I call you back in ten minutes?|Чи можу я передзвонити вам за десять хвилин?
+hang up|покласти слухавку|Don't hang up, please.|Не кладіть слухавку, будь ласка.
+hold on|зачекати на лінії|Hold on, I'll check.|Зачекайте, я перевірю.
+put through|з'єднати|I'll put you through to Maria.|Я з'єдную вас з Марією.
+get through|додзвонитися|I couldn't get through to your office.|Я не міг додзвонитися до вашого офісу.
+leave a message|залишити повідомлення|Can I leave a message?|Чи можна залишити повідомлення?
+take a message|прийняти повідомлення|Can I take a message?|Чи можу я прийняти повідомлення?
+speak up|говорити голосніше|Could you speak up, please?|Не могли б ви говорити голосніше?
+bad connection|поганий звʼязок|I'm sorry, the connection is bad.|Вибачте, поганий звʼязок.
+breaking up|переривається (звʼязок)|You're breaking up.|Вас погано чути, звʼязок переривається.
+Could you repeat that?|Ви можете повторити?|Sorry, could you repeat that?|Вибачте, ви можете повторити?
+Who's calling?|Хто телефонує?|Hello, who's calling, please?|Добрий день, хто телефонує?
+This is...|Це ... (по телефону)|Hello, this is Maria from sales.|Добрий день, це Марія з відділу продажів.
+I'm calling about|Я телефоную щодо|I'm calling about your order.|Я телефоную щодо вашого замовлення.
+speak to|поговорити з|Can I speak to the manager?|Чи можу я поговорити з керівником?
+extension|внутрішній номер|Please dial extension two-one-five.|Наберіть внутрішній номер двісті пʼятнадцять.
+voicemail|голосова пошта|I left you a voicemail.|Я залишив вам повідомлення на голосову пошту.
+conference call|конференц-дзвінок|We have a conference call at ten.|У нас конференц-дзвінок о десятій.
+video call|відеодзвінок|Let's have a quick video call.|Проведімо короткий відеодзвінок.
+join|приєднатися|Please join the call at nine.|Будь ласка, приєднайтеся до дзвінка о дев'ятій.
+mute|вимкнути мікрофон|You're on mute.|У вас вимкнений мікрофон.
+unmute|увімкнути мікрофон|Please unmute yourself.|Будь ласка, увімкніть мікрофон.
+screen sharing|демонстрація екрана|Can you start screen sharing?|Можете почати демонстрацію екрана?
+subject line|тема листа|Please write a clear subject line.|Будь ласка, напишіть чітку тему листа.
+Dear Sir or Madam|Шановний пане або пані|Dear Sir or Madam, I'm writing about a job.|Шановні пане або пані, я пишу щодо вакансії.
+I'm writing to|Пишу, щоб|I'm writing to ask about the price.|Пишу, щоб запитати про ціну.
+regarding|щодо|I'm writing regarding your invoice.|Пишу щодо вашого рахунку.
+further to|на додаток до, у відповідь на|Further to our call, I'm sending the details.|У продовження нашої розмови надсилаю подробиці.
+I would appreciate|я був би вдячний|I would appreciate your help.|Я була б вдячна за вашу допомогу.
+Please find attached|У вкладенні ви знайдете|Please find attached the contract.|У вкладенні ви знайдете контракт.
+forward|переслати|I'll forward you the email.|Я перешлю вам цей лист.
+reply|відповісти; відповідь|I'll reply to you today.|Я відповім вам сьогодні.
+reply all|відповісти всім|Please don't reply all.|Будь ласка, не відповідайте всім.
+CC|копія (у листі)|Please CC me on this email.|Будь ласка, додайте мене в копію цього листа.
+inbox|вхідні|My inbox is full.|Моя поштова скринька переповнена.
+unread|непрочитаний|I have fifty unread emails.|У мене п'ятдесят непрочитаних листів.
+draft|чернетка|I'm still writing the draft.|Я ще пишу чернетку.
+send|надіслати|I'll send it right now.|Я надішлю це просто зараз.
+receive|отримати|Did you receive my email?|Ви отримали мій лист?
+confirm|підтвердити|Please confirm your attendance.|Будь ласка, підтвердьте свою присутність.
+confirmation|підтвердження|I'm waiting for the confirmation.|Я чекаю на підтвердження.
+remind|нагадати|Could you remind me about the meeting?|Не могли б ви нагадати мені про зустріч?
+reminder|нагадування|This is a friendly reminder.|Це дружнє нагадування.
+Best regards|З найкращими побажаннями|Best regards, Maria.|З найкращими побажаннями, Марія.
+Kind regards|З повагою|Kind regards, Maria Koval.|З повагою, Марія Коваль.
+Thank you in advance|Заздалегідь дякую|Thank you in advance for your help.|Заздалегідь дякую за допомогу.
+Looking forward to your reply|Чекаю на вашу відповідь|Looking forward to your reply.|Чекаю на вашу відповідь.
+out of office|не на роботі (автовідповідь)|I'm out of office until Monday.|Мене не буде на роботі до понеділка.
+attachment|вкладення|I can't open the attachment.|Я не можу відкрити вкладення.
+mailing list|список розсилки|Please add me to the mailing list.|Будь ласка, додайте мене до списку розсилки.
+message|повідомлення|I sent you a message on chat.|Я надіслала вам повідомлення в чаті.
+chat|чат; спілкуватися в чаті|Let's chat on the team channel.|Спілкуймося в каналі команди.
+notification|сповіщення|I got a notification about the meeting.|Я отримав сповіщення про зустріч.
+urgent|термінове|I have an urgent request.|У мене термінове прохання.
+## W|Співбесіди
+job interview|співбесіда|I have a job interview tomorrow.|Завтра в мене співбесіда.
+apply for|подавати заявку на|I'd like to apply for this position.|Я хотів би подати заявку на цю посаду.
+position|посада|I'm interested in the sales position.|Мене цікавить посада в продажах.
+vacancy|вакансія|We have a vacancy in our team.|У нашій команді є вакансія.
+candidate|кандидат|She is a strong candidate.|Вона сильна кандидатка.
+résumé|резюме|I sent my résumé yesterday.|Я надіслала своє резюме вчора.
+cover letter|супровідний лист|I wrote a short cover letter.|Я написала короткий супровідний лист.
+experience|досвід|I have three years of experience.|У мене три роки досвіду.
+work experience|досвід роботи|Do you have any work experience?|У вас є досвід роботи?
+skills|навички|My main skills are communication and planning.|Мої основні навички — спілкування та планування.
+strength|сильна сторона|My biggest strength is teamwork.|Моя найбільша сильна сторона — командна робота.
+weakness|слабка сторона|My weakness is that I'm too perfectionist.|Моя слабка сторона в тому, що я надто перфекціоніст.
+qualification|кваліфікація|What are your qualifications?|Яка у вас кваліфікація?
+degree|ступінь, диплом|I have a degree in economics.|У мене диплом з економіки.
+graduate|закінчити навчання; випускник|I graduated two years ago.|Я закінчила навчання два роки тому.
+be good at|добре вміти|I'm good at solving problems.|Я добре вмію розв'язувати проблеми.
+be familiar with|бути знайомим з|I'm familiar with this software.|Я знайомий з цією програмою.
+responsibilities|обовʼязки|What are the main responsibilities?|Які основні обовʼязки?
+job description|опис посади|I read the job description carefully.|Я уважно прочитала опис посади.
+salary|заробітна плата|What is the salary for this position?|Яка зарплата на цій посаді?
+benefits|пільги, бонуси|The company offers good benefits.|Компанія пропонує хороші бонуси.
+full-time|повний робочий день|It's a full-time job.|Це робота на повний робочий день.
+part-time|неповний робочий день|I'm looking for a part-time job.|Я шукаю роботу на неповний день.
+permanent|постійний|It's a permanent contract.|Це безстроковий контракт.
+temporary|тимчасовий|This is only a temporary job.|Це лише тимчасова робота.
+probation period|випробувальний термін|The probation period is three months.|Випробувальний термін — три місяці.
+Tell me about yourself|Розкажіть про себе|Tell me about yourself, please.|Розкажіть про себе, будь ласка.
+Why do you want this job?|Чому ви хочете цю роботу?|Why do you want this job, Maria?|Чому ви хочете цю роботу, Маріє?
+Where do you see yourself in five years?|Ким ви бачите себе через пʼять років?|Where do you see yourself in five years?|Ким ви бачите себе через пʼять років?
+career|кар'єра|I want to build a career in marketing.|Я хочу побудувати кар'єру в маркетингу.
+goal|ціль|My goal is to become a team leader.|Моя мета — стати керівником команди.
+achievement|досягнення|My biggest achievement was a new project.|Моїм найбільшим досягненням був новий проєкт.
+improve|покращити|I want to improve my English at work.|Я хочу покращити свою англійську на роботі.
+learn quickly|швидко вчитися|I learn quickly and ask questions.|Я швидко вчуся й ставлю запитання.
+under pressure|під тиском|I work well under pressure.|Я добре працюю під тиском.
+meet deadlines|виконувати терміни|I always meet my deadlines.|Я завжди дотримуюся термінів.
+be motivated|бути вмотивованим|I'm very motivated to learn.|Я дуже вмотивований вчитися.
+enthusiastic|захоплений, ентузіастичний|She is enthusiastic about the job.|Вона захоплена цією роботою.
+reference|рекомендація|I can give you two references.|Я можу надати вам дві рекомендації.
+notice period|термін попередження про звільнення|My notice period is one month.|Мій термін попередження — один місяць.
+start date|дата початку|What is the start date?|Яка дата початку роботи?
+available to start|готовий розпочати|I'm available to start next month.|Я можу розпочати наступного місяця.
+make a good impression|справити хороше враження|I want to make a good impression.|Я хочу справити хороше враження.
+dress code|дрес-код|What is the dress code at the office?|Який дрес-код в офісі?
+nervous|схвильований|I felt nervous before the interview.|Я хвилювалася перед співбесідою.
+be offered|отримати пропозицію|She was offered the job.|Їй запропонували роботу.
+accept an offer|прийняти пропозицію|I'm happy to accept your offer.|Я із задоволенням приймаю вашу пропозицію.
+turn down|відмовитися|I had to turn down the offer.|Мені довелося відмовитися від пропозиції.
+get the job|отримати роботу|I really want to get this job.|Я дуже хочу отримати цю роботу.
+hire|найняти|We want to hire two new people.|Ми хочемо найняти двох нових людей.
+recruit|набирати персонал|We're recruiting new staff.|Ми набираємо новий персонал.
+interviewer|той, хто проводить співбесіду|The interviewer was very friendly.|Інтервʼюер був дуже привітним.
+follow-up question|уточнювальне запитання|She asked me a follow-up question.|Вона поставила мені уточнювальне запитання.
+second interview|друга співбесіда|I have a second interview on Friday.|У мене друга співбесіда в пʼятницю.
+in person|особисто|The interview is in person.|Співбесіда відбудеться особисто.
+online interview|онлайн-співбесіда|I have an online interview today.|Сьогодні в мене онлайн-співбесіда.
+thank you for your time|дякую, що приділили час|Thank you for your time today.|Дякую, що приділили мені сьогодні час.
+## W|Терміни й проєкти
+deadline|кінцевий термін|The deadline is next Friday.|Кінцевий термін — наступна пʼятниця.
+meet the deadline|вкластися в термін|We must meet the deadline.|Ми повинні вкластися в термін.
+miss the deadline|пропустити термін|I don't want to miss the deadline.|Я не хочу пропустити термін.
+tight deadline|стислі терміни|We have a very tight deadline.|У нас дуже стислі терміни.
+due date|термін здачі|The due date is Monday.|Термін здачі — понеділок.
+on schedule|за графіком|The project is on schedule.|Проєкт іде за графіком.
+ahead of schedule|раніше за графік|We finished ahead of schedule.|Ми закінчили раніше, ніж за графіком.
+behind schedule|із запізненням|We are two days behind schedule.|Ми відстаємо від графіка на два дні.
+delay|затримка; затримувати|There was a delay in delivery.|Сталася затримка з доставкою.
+extend|продовжити|Can we extend the deadline?|Чи можна продовжити термін?
+extension|продовження терміну|Can I get an extension until Monday?|Чи можу я отримати продовження до понеділка?
+project|проєкт|We are starting a new project.|Ми починаємо новий проєкт.
+project manager|керівник проєкту|The project manager sent us the plan.|Керівник проєкту надіслав нам план.
+plan|план; планувати|Let's make a plan for this week.|Складімо план на цей тиждень.
+milestone|ключовий етап|We reached an important milestone.|Ми досягли важливого етапу.
+stage|етап|We are at the final stage.|Ми на завершальному етапі.
+phase|фаза|The first phase is finished.|Перша фаза завершена.
+goal|мета, ціль|Our goal is to launch in May.|Наша мета — запуск у травні.
+target|цільовий показник|We met our monthly target.|Ми виконали місячний план.
+budget|бюджет|We have a small budget.|У нас невеликий бюджет.
+cost|вартість; коштувати|What is the total cost?|Яка загальна вартість?
+resources|ресурси|We need more resources for this.|Нам потрібно більше ресурсів для цього.
+launch|запуск; запускати|We'll launch the product in spring.|Ми запустимо продукт навесні.
+release|випуск; випускати|The new version is released today.|Нову версію випускають сьогодні.
+progress|прогрес|How is your progress?|Як ваш прогрес?
+make progress|досягати прогресу|We're making good progress.|Ми добре просуваємося.
+status|статус|What is the status of the project?|Який статус проєкту?
+update|звіт про стан справ|I'll give you an update on Friday.|Я розкажу вам про стан справ у пʼятницю.
+report|звіт|I'm writing a report for my manager.|Я пишу звіт для свого керівника.
+presentation|презентація|I'm giving a presentation tomorrow.|Завтра я роблю презентацію.
+agenda|порядок денний|Let's look at the agenda.|Подивімося на порядок денний.
+minutes|протокол зустрічі|Maria will write the minutes.|Марія напише протокол зустрічі.
+action item|завдання за підсумками зустрічі|I have two action items.|У мене два завдання за підсумками зустрічі.
+next steps|наступні кроки|What are the next steps?|Які наступні кроки?
+follow-up meeting|повторна зустріч|Let's have a follow-up meeting.|Проведімо повторну зустріч.
+review|перегляд; переглядати|We'll review the plan on Monday.|Ми розглянемо план у понеділок.
+revise|переглянути, виправити|I need to revise the report.|Мені потрібно переглянути звіт.
+update the plan|оновити план|We should update the plan.|Нам слід оновити план.
+estimate|оцінка; оцінювати|Can you give me an estimate?|Можете дати мені орієнтовну оцінку?
+approximately|приблизно|It will take approximately two hours.|Це займе приблизно дві години.
+roughly|приблизно|It costs roughly fifty euros.|Це коштує приблизно пʼятдесят євро.
+on track|за планом|We're on track to finish on time.|Ми йдемо за планом і закінчимо вчасно.
+off track|не за планом|The project went off track.|Проєкт зійшов зі шляху за планом.
+keep on schedule|дотримуватися графіка|We need to keep on schedule.|Нам потрібно дотримуватися графіка.
+priority list|список пріоритетів|Let's make a priority list.|Складімо список пріоритетів.
+high priority|високий пріоритет|This is a high priority task.|Це завдання високого пріоритету.
+bottleneck|вузьке місце|The main bottleneck is the testing.|Головне вузьке місце — тестування.
+dependency|залежність|This task has a dependency on Maria's work.|Це завдання залежить від роботи Марії.
+scope|обсяг робіт|The scope of the project has changed.|Обсяг проєкту змінився.
+stakeholder|зацікавлена сторона|We need to inform all stakeholders.|Нам потрібно проінформувати всі зацікавлені сторони.
+outcome|результат|We're happy with the outcome.|Ми задоволені результатом.
+result|результат|The results are better than expected.|Результати кращі, ніж очікувалося.
+success|успіх|The launch was a great success.|Запуск став великим успіхом.
+achieve|досягти|We achieved our main goal.|Ми досягли своєї основної мети.
+complete|завершити|I'll complete the task by noon.|Я завершу завдання до обіду.
+finalize|остаточно доопрацювати|We need to finalize the plan today.|Нам потрібно остаточно доопрацювати план сьогодні.
+## W|Помилки й проблеми
+mistake|помилка|I made a mistake in the report.|Я зробила помилку у звіті.
+make a mistake|помилитися|Sorry, I made a mistake.|Вибачте, я помилився.
+error|помилка (збій)|The system shows an error.|Система показує помилку.
+problem|проблема|We have a problem with the printer.|У нас проблема з принтером.
+issue|питання, неполадка|There is an issue with my account.|З моїм обліковим записом є неполадка.
+fault|вада, несправність|There is a fault in the machine.|У машині є несправність.
+bug|баг|We found a bug in the program.|Ми знайшли баг у програмі.
+fix|виправити|I'll fix it right away.|Я виправлю це негайно.
+solve|розв'язати|We solved the problem together.|Ми розв'язали проблему разом.
+solution|розв'язок|Do you have a solution?|У вас є розв'язок?
+work out|вирішити, розрахувати|We'll work out a solution.|Ми знайдемо вирішення.
+go wrong|піти не так|Something went wrong.|Щось пішло не так.
+break down|зламатися|The printer broke down again.|Принтер знову зламався.
+not working|не працює|The internet is not working.|Інтернет не працює.
+stop working|перестати працювати|My laptop stopped working.|Мій ноутбук перестав працювати.
+crash|збій, зависання|The program keeps crashing.|Програма постійно вилітає.
+freeze|зависнути|My screen froze.|Мій екран завис.
+log in|увійти (в систему)|I can't log in to my account.|Я не можу увійти у свій обліковий запис.
+log out|вийти (із системи)|Please log out and log in again.|Будь ласка, вийдіть і увійдіть знову.
+password|пароль|I forgot my password.|Я забула пароль.
+reset|скинути, відновити|Can you reset my password?|Можете скинути мій пароль?
+restart|перезапустити|Try to restart your computer.|Спробуйте перезапустити комп'ютер.
+update software|оновити програму|You need to update the software.|Вам потрібно оновити програму.
+backup|резервна копія|Make a backup of the file.|Зробіть резервну копію файлу.
+lose|втратити|I lost my work.|Я втратив свою роботу.
+delete|видалити|I accidentally deleted the file.|Я випадково видалила файл.
+by mistake|помилково|I sent it to you by mistake.|Я надіслала це вам помилково.
+accidentally|випадково|He accidentally closed the document.|Він випадково закрив документ.
+miss|пропустити|I missed an important email.|Я пропустила важливий лист.
+forget|забути|I forgot to send the file.|Я забув надіслати файл.
+overlook|недогледіти|I overlooked this detail.|Я недогледіла цю деталь.
+misunderstand|неправильно зрозуміти|I think I misunderstood the task.|Здається, я неправильно зрозумів завдання.
+misunderstanding|непорозуміння|It was just a misunderstanding.|Це було просто непорозуміння.
+confusing|заплутаний|The instructions are confusing.|Інструкції заплутані.
+unclear|незрозумілий|This point is still unclear.|Цей пункт досі незрозумілий.
+incorrect|неправильний|The data is incorrect.|Дані неправильні.
+wrong|неправильний|I sent the wrong file.|Я надіслала не той файл.
+missing|відсутній|One page is missing.|Однієї сторінки бракує.
+incomplete|неповний|The form is incomplete.|Форма неповна.
+out of date|застарілий|This information is out of date.|Ця інформація застаріла.
+faulty|несправний|The equipment is faulty.|Обладнання несправне.
+damaged|пошкоджений|The package arrived damaged.|Посилка прийшла пошкодженою.
+shortage|нестача|We have a shortage of staff.|У нас нестача персоналу.
+run out of|закінчитися|We ran out of paper.|У нас закінчився папір.
+fall behind|відставати|I'm falling behind with my work.|Я відстаю з роботою.
+catch up|надолужити|I need to catch up on my emails.|Мені потрібно надолужити листування.
+be stuck|застрягти|I'm stuck on this task.|Я застряг на цьому завданні.
+struggle with|мати труднощі з|I'm struggling with this report.|Мені важко даєтеся цей звіт.
+be worried about|турбуватися про|I'm worried about the deadline.|Я хвилююся про термін.
+take responsibility|взяти відповідальність|I take responsibility for the error.|Я беру відповідальність за помилку.
+my fault|моя вина|Sorry, that's my fault.|Вибачте, це моя вина.
+It's not your fault|Це не ваша вина|Don't worry, it's not your fault.|Не хвилюйтеся, це не ваша вина.
+learn from|вчитися на|We can learn from our mistakes.|Ми можемо вчитися на своїх помилках.
+prevent|запобігти|How can we prevent this problem?|Як ми можемо запобігти цій проблемі?
+avoid|уникати|Let's avoid the same mistake.|Уникаймо такої самої помилки.
+report a problem|повідомити про проблему|I need to report a problem.|Мені потрібно повідомити про проблему.
+escalate|передати вище|I'll escalate this to my manager.|Я передам це своєму керівникові.
+## W|Прохання про допомогу
+Could you help me?|Ви могли б мені допомогти?|Could you help me with this report?|Ви могли б допомогти мені з цим звітом?
+Can you give me a hand?|Можете мені допомогти?|Can you give me a hand with these boxes?|Можете допомогти мені з цими коробками?
+Do you have a minute?|У вас є хвилинка?|Do you have a minute to talk?|У вас є хвилинка поговорити?
+Could you explain?|Не могли б ви пояснити?|Could you explain this to me again?|Не могли б ви пояснити мені це ще раз?
+I need some help|Мені потрібна допомога|I need some help with this software.|Мені потрібна допомога з цією програмою.
+I'd appreciate your help|Я був би вдячний за допомогу|I'd appreciate your help with the schedule.|Я була б вдячна за допомогу з розкладом.
+Would you mind...?|Ви не заперечуєте...?|Would you mind checking this for me?|Ви не заперечуєте перевірити це для мене?
+Could you do me a favor?|Ви можете зробити мені послугу?|Could you do me a favor and cover my shift?|Ви можете зробити мені послугу й підмінити мою зміну?
+I'm not sure how to|Я не впевнений, як|I'm not sure how to start this task.|Я не впевнена, як розпочати це завдання.
+I don't know where to|Я не знаю, де|I don't know where to find the file.|Я не знаю, де знайти файл.
+Where can I find...?|Де я можу знайти...?|Where can I find the instructions?|Де я можу знайти інструкції?
+Who should I ask?|Кого мені спитати?|Who should I ask about this?|Кого мені спитати про це?
+Who can help me?|Хто може мені допомогти?|Who can help me with the computer?|Хто може мені допомогти з комп'ютером?
+Is there anyone who...?|Чи є хтось, хто...?|Is there anyone who knows this system?|Чи є хтось, хто знає цю систему?
+I'm having trouble with|У мене проблеми з|I'm having trouble with my email.|У мене проблеми з електронною поштою.
+I can't seem to|Здається, я не можу|I can't seem to open this file.|Здається, я не можу відкрити цей файл.
+Can you show me how?|Можете показати, як?|Can you show me how to do this?|Можете показати, як це робити?
+Could you check this?|Можете перевірити це?|Could you check this number for me?|Можете перевірити для мене це число?
+Could you take a look?|Можете глянути?|Could you take a look at my presentation?|Можете глянути на мою презентацію?
+look over|переглянути|Could you look over this email?|Можете переглянути цей лист?
+Thanks for your help|Дякую за допомогу|Thanks for your help, I really appreciate it.|Дякую за допомогу, я це справді ціную.
+I owe you one|Я винен вам послугу|Thanks, I owe you one.|Дякую, я твій боржник.
+No problem|Нема проблем|No problem, I'm happy to help.|Нема проблем, із задоволенням допоможу.
+Of course|Звісно|Of course, I can help you.|Звісно, я можу вам допомогти.
+Sure, go ahead|Звісно, кажіть|Sure, go ahead and ask.|Звісно, питайте.
+Let me know|Дайте знати|Let me know if you need anything else.|Дайте знати, якщо вам знадобиться ще щось.
+Feel free to ask|Не соромтеся питати|Feel free to ask me any questions.|Не соромтеся ставити мені будь-які запитання.
+Just ask|Просто запитайте|If you need help, just ask.|Якщо вам потрібна допомога, просто запитайте.
+I'll help you with that|Я допоможу вам з цим|I'll help you with that right now.|Я допоможу вам з цим просто зараз.
+Let me see|Дайте подивитися|Let me see what I can do.|Дайте подивитися, що я можу зробити.
+I'm on it|Я цим займаюся|Don't worry, I'm on it.|Не хвилюйтеся, я цим займаюся.
+Leave it with me|Залиште це мені|Leave it with me, I'll sort it out.|Залиште це мені, я розберуся.
+I'll find out|Я дізнаюся|I'll find out and let you know.|Я дізнаюся й повідомлю вам.
+I'm not sure|Я не впевнений|I'm not sure, but I can ask.|Я не впевнена, але можу запитати.
+I have no idea|Я гадки не маю|I have no idea how to fix it.|Я гадки не маю, як це виправити.
+Could you point me to...?|Можете підказати, де...?|Could you point me to the right person?|Можете підказати, до кого звернутися?
+ask for advice|попросити поради|I want to ask for your advice.|Я хочу попросити вашої поради.
+advice|порада|Thank you for your advice.|Дякую за вашу пораду.
+recommend|порекомендувати|What do you recommend?|Що ви порекомендуєте?
+tip|порада, підказка|Do you have any tips for me?|У вас є якісь підказки для мене?
+suggest|запропонувати|I suggest we ask the manager.|Я пропоную спитати в керівника.
+explain|пояснити|Can you explain how it works?|Можете пояснити, як це працює?
+repeat|повторити|Could you repeat the last part?|Можете повторити останню частину?
+speak more slowly|говорити повільніше|Could you speak more slowly, please?|Не могли б ви говорити повільніше?
+write it down|записати|Could you write it down for me?|Не могли б ви записати це для мене?
+spell|продиктувати по літерах|How do you spell your name?|Як пишеться ваше імʼя?
+I didn't catch that|Я не розчув|Sorry, I didn't catch that.|Вибачте, я не розчула.
+What do you mean?|Що ви маєте на увазі?|What do you mean by that?|Що ви маєте на увазі?
+Does that make sense?|Це має сенс?|Does that make sense to you?|Це має для вас сенс?
+Am I right?|Я правий?|So I need to send it today, am I right?|Отже, мені потрібно надіслати це сьогодні, я правильно зрозумів?
+Is that correct?|Це правильно?|Is that correct, or should I change it?|Це правильно, чи мені потрібно це змінити?
+in other words|іншими словами|In other words, we need more time.|Іншими словами, нам потрібно більше часу.
+for example|наприклад|For example, you can use this template.|Наприклад, ви можете використати цей шаблон.
+Could you be more specific?|Можете конкретизувати?|Could you be more specific about the task?|Можете конкретизувати завдання?
+## D|Плани
+plan to|планувати|I plan to visit my friends this weekend.|Я планую відвідати друзів цими вихідними.
+be going to|збиратися|I'm going to cook dinner tonight.|Я збираюся приготувати вечерю сьогодні ввечері.
+be about to|ось-ось збиратися|I'm about to leave the house.|Я ось-ось вийду з дому.
+look forward to|чекати з нетерпінням|I'm looking forward to the weekend.|Я з нетерпінням чекаю вихідних.
+make plans|будувати плани|Do you want to make plans for Saturday?|Хочете спланувати щось на суботу?
+have plans|мати плани|Do you have any plans for tonight?|У вас є якісь плани на вечір?
+free time|вільний час|What do you do in your free time?|Що ви робите у вільний час?
+get together|зібратися, зустрітися|Let's get together on Sunday.|Давайте зустрінемося в неділю.
+meet up|зустрітися|Maria and I are meeting up for coffee.|Ми з Марією зустрічаємося випити кави.
+hang out|проводити час разом|We often hang out after work.|Ми часто проводимо час разом після роботи.
+catch up|поспілкуватися, наздогнати новини|I want to catch up with my old friend.|Я хочу поспілкуватися зі старою подругою.
+invite|запросити|I'd like to invite you to dinner.|Я хотів би запросити вас на вечерю.
+come over|завітати|Do you want to come over tonight?|Хочете завітати до мене сьогодні ввечері?
+drop by|заскочити|I'll drop by after work.|Я загляну після роботи.
+pick up|забрати|I'll pick you up at seven.|Я заїду по вас о сьомій.
+drop off|підвезти, залишити|Can you drop me off at the station?|Можете підвезти мене до вокзалу?
+go out|піти кудись, розважитися|Let's go out for dinner.|Підемо кудись повечеряти.
+stay in|залишитися вдома|I'd rather stay in tonight.|Я б краще залишилася вдома сьогодні ввечері.
+take a trip|відправитися в подорож|We want to take a trip in summer.|Ми хочемо поїхати в подорож влітку.
+book a ticket|забронювати квиток|I need to book a ticket to Warsaw.|Мені потрібно забронювати квиток до Варшави.
+set off|вирушити|We set off early in the morning.|Ми вирушили рано вранці.
+get back|повернутися|When do you get back?|Коли ви повертаєтеся?
+this weekend|цими вихідними|What are you doing this weekend?|Що ви робите цими вихідними?
+next week|наступного тижня|I'm free next week.|Наступного тижня я вільна.
+the day after tomorrow|післязавтра|Let's meet the day after tomorrow.|Зустрінемося післязавтра.
+in the evening|ввечері|I usually relax in the evening.|Ввечері я зазвичай відпочиваю.
+at the moment|наразі|I'm busy at the moment.|Наразі я зайнятий.
+for a while|на деякий час|I'm going to stay here for a while.|Я збираюся побути тут якийсь час.
+sometime soon|найближчим часом|Let's meet sometime soon.|Зустрінемося найближчим часом.
+as planned|як заплановано|Everything went as planned.|Усе пройшло, як заплановано.
+change my mind|передумати|I changed my mind about the trip.|Я передумала щодо поїздки.
+It depends|Це залежить|I don't know yet, it depends on the weather.|Ще не знаю, це залежить від погоди.
+if possible|якщо можливо|I'd like to come if possible.|Я хотів би прийти, якщо це можливо.
+maybe|можливо|Maybe we can meet on Friday.|Можливо, ми зможемо зустрітися в пʼятницю.
+probably|імовірно|I'll probably be late.|Я, імовірно, запізнюся.
+definitely|неодмінно|I'll definitely come to your party.|Я неодмінно прийду на твою вечірку.
+be up for|бути не проти|Are you up for a walk?|Ви не проти прогулянки?
+sounds good|звучить добре|That sounds good to me.|Мені це підходить.
+I can't make it|Я не зможу прийти|I'm sorry, I can't make it tonight.|Вибачте, я не зможу прийти сьогодні ввечері.
+cancel|скасувати|I have to cancel our plans.|Мені доводиться скасувати наші плани.
+another time|іншим разом|Maybe another time.|Можливо, іншим разом.
+Let's do it|Давайте зробимо це|Let's do it on Saturday.|Давайте зробимо це в суботу.
+I'm in|Я за|Count me in, I'm in.|Розраховуйте на мене, я за.
+Let's meet at|Зустрінемося о/в|Let's meet at the station at six.|Зустрінемося на вокзалі о шостій.
+I'll text you|Я напишу вам повідомлення|I'll text you when I arrive.|Я напишу вам, коли приїду.
+## D|Побут
+household chores|хатня робота|I do household chores on Saturday.|Я займаюся хатньою роботою в суботу.
+do the laundry|прати білизну|I need to do the laundry today.|Мені сьогодні потрібно випрати білизну.
+do the dishes|мити посуд|Maria does the dishes after dinner.|Марія миє посуд після вечері.
+take out the trash|винести сміття|Can you take out the trash?|Можеш винести сміття?
+clean up|прибрати|Let's clean up the kitchen.|Давайте приберемо на кухні.
+tidy up|упорядкувати|I tidy up my room every day.|Я прибираю у своїй кімнаті щодня.
+vacuum|пилососити|I vacuum the floor twice a week.|Я пилососю підлогу двічі на тиждень.
+cook|готувати|I cook dinner for my family.|Я готую вечерю для своєї родини.
+grocery shopping|покупки продуктів|I do the grocery shopping on Sunday.|Я купую продукти в неділю.
+shopping list|список покупок|I forgot the shopping list.|Я забув список покупок.
+run out of|закінчитися|We've run out of milk.|У нас закінчилося молоко.
+pay the bills|оплатити рахунки|I need to pay the bills today.|Мені сьогодні потрібно оплатити рахунки.
+rent|оренда; орендувати|The rent is due on the first.|Орендну плату потрібно внести першого числа.
+utilities|комунальні послуги|Utilities are included in the rent.|Комунальні послуги входять в оренду.
+landlord|орендодавець|I'll call the landlord about it.|Я зателефоную орендодавцю щодо цього.
+neighbor|сусід|My neighbor is very friendly.|Мій сусід дуже привітний.
+move in|заселитися|We're moving in next week.|Ми заселяємося наступного тижня.
+move out|виселитися|They are moving out in May.|Вони виїжджають у травні.
+fix|полагодити|I need to fix the tap.|Мені потрібно полагодити кран.
+repair|ремонтувати|We need to repair the washing machine.|Нам потрібно відремонтувати пральну машину.
+leak|протікати; протікання|There's a leak in the bathroom.|У ванній кімнаті протікає.
+turn on|увімкнути|Can you turn on the light?|Можеш увімкнути світло?
+turn off|вимкнути|Please turn off the TV.|Будь ласка, вимкни телевізор.
+turn up|зробити голосніше|Could you turn up the volume?|Можеш зробити гучніше?
+turn down|зробити тихіше|Please turn down the music.|Будь ласка, зроби музику тихіше.
+plug in|увімкнути в розетку|Plug in the charger, please.|Увімкни зарядний пристрій у розетку, будь ласка.
+charge|заряджати|I need to charge my phone.|Мені потрібно зарядити телефон.
+heating|опалення|The heating is not working.|Опалення не працює.
+air conditioning|кондиціонер|Can you turn on the air conditioning?|Можеш увімкнути кондиціонер?
+bedroom|спальня|My bedroom is quite small.|Моя спальня досить мала.
+bathroom|ванна кімната|The bathroom is on the left.|Ванна кімната ліворуч.
+furniture|меблі|We bought new furniture.|Ми купили нові меблі.
+appliance|побутовий прилад|This appliance is very old.|Цей прилад дуже старий.
+wake up|прокидатися|I wake up at seven every day.|Я прокидаюся о сьомій щодня.
+get up|вставати|I get up early on weekdays.|У будні я встаю рано.
+get dressed|одягатися|I get dressed in five minutes.|Я одягаюся за пʼять хвилин.
+have breakfast|снідати|I have breakfast at eight.|Я снідаю о восьмій.
+go to bed|лягати спати|I usually go to bed at eleven.|Зазвичай я лягаю спати об одинадцятій.
+fall asleep|заснути|I fell asleep on the sofa.|Я заснула на дивані.
+get some rest|відпочити|I need to get some rest.|Мені потрібно відпочити.
+commute|діставатися на роботу|My commute takes forty minutes.|Дорога на роботу займає в мене сорок хвилин.
+traffic jam|затор|I was stuck in a traffic jam.|Я застряг у заторі.
+## D|Знайомства
+Nice to meet you|Приємно познайомитися|Nice to meet you, I'm Maria.|Приємно познайомитися, я Марія.
+Pleased to meet you|Радий познайомитися|Pleased to meet you, Mr. Brown.|Радий знайомству, пане Браун.
+How do you do?|Як ся маєте? (вітання)|How do you do? It's an honor.|Як ся маєте? Це честь для мене.
+What do you do?|Ким ви працюєте?|What do you do for a living?|Ким ви працюєте?
+for a living|для заробітку|What do you do for a living?|Чим ви заробляєте на життя?
+I work as|Я працюю на посаді|I work as a designer.|Я працюю дизайнером.
+be from|бути родом з|I'm from Ukraine.|Я з України.
+grow up|вирости|I grew up in a small town.|Я виріс у маленькому місті.
+live in|жити в|I live in an apartment near the center.|Я живу в квартирі біля центру.
+be married|бути одруженим|Are you married?|Ви одружені?
+have kids|мати дітей|Do you have any kids?|У вас є діти?
+be into|захоплюватися|I'm into photography.|Я захоплююся фотографією.
+hobby|хобі|My hobby is cooking.|Моє хобі — кулінарія.
+interests|інтереси|What are your interests?|Які у вас інтереси?
+spend time|проводити час|I spend a lot of time with my family.|Я проводжу багато часу з родиною.
+in common|спільне|We have a lot in common.|У нас багато спільного.
+get to know|познайомитися ближче|I'd like to get to know you better.|Я хотів би краще вас пізнати.
+introduce yourself|представитися|Let me introduce myself.|Дозвольте мені представитися.
+tell me about|розкажи мені про|Tell me about your family.|Розкажи мені про свою родину.
+So, how long have you been here?|Як довго ви тут?|So, how long have you been here?|То як довго ви тут?
+How long have you lived here?|Як довго ви тут живете?|How long have you lived here?|Як довго ви тут живете?
+be new here|бути новим тут|I'm new here.|Я тут нова.
+show someone around|показати місто/місце|Maria will show you around.|Марія покаже вам усе навколо.
+get along|ладнати|We get along really well.|Ми дуже добре ладнаємо.
+good friend|хороший друг|He is a good friend of mine.|Він мій хороший друг.
+old friend|давній друг|She is an old friend of mine.|Вона моя давня подруга.
+make friends|заводити друзів|It's easy to make friends here.|Тут легко заводити друзів.
+keep in contact|підтримувати звʼязок|Let's keep in contact.|Підтримуймо звʼязок.
+exchange numbers|обмінятися номерами|Let's exchange numbers.|Обміняймося номерами.
+add you on|додати вас у (соцмережі)|Can I add you on Instagram?|Можна додати вас в Інстаграмі?
+Are you free on...?|Ви вільні...?|Are you free on Saturday evening?|Ви вільні в суботу ввечері?
+Would you like to...?|Хочете...?|Would you like to have a coffee?|Хочете випити кави?
+How about...?|Що скажете про...?|How about going to the cinema?|Що скажете про кіно?
+Shall we...?|Ми можемо...?|Shall we go for a walk?|Чи не піти нам на прогулянку?
+It was great to see you|Було приємно вас бачити|It was great to see you again.|Було чудово знову вас побачити.
+Take care|Бережіть себе|Take care, see you soon!|Бережіть себе, до скорої зустрічі!
+See you later|До зустрічі|See you later, Maria!|До зустрічі, Маріє!
+Say hello to|Передавайте привіт|Say hello to your parents.|Передавайте привіт своїм батькам.
+Good luck|Удачі|Good luck with your new job!|Удачі на новій роботі!
+Congratulations|Вітаю|Congratulations on your new job!|Вітаю з новою роботою!
+Happy birthday|З днем народження|Happy birthday, Maria!|З днем народження, Маріє!
+Thanks for coming|Дякую, що прийшли|Thanks for coming to my party.|Дякую, що прийшли на мою вечірку.
+## D|Висловлення думки
+I think|Я думаю|I think it's a great idea.|Я думаю, це чудова ідея.
+I believe|Я вважаю|I believe we can do it.|Я вважаю, ми можемо це зробити.
+In my opinion|На мою думку|In my opinion, this is a good plan.|На мою думку, це гарний план.
+As far as I know|Наскільки я знаю|As far as I know, he's away.|Наскільки я знаю, його немає.
+It seems to me|Мені здається|It seems to me that you're right.|Мені здається, ви маєте рацію.
+I feel that|Я відчуваю, що|I feel that we need more time.|Я відчуваю, що нам потрібно більше часу.
+I'm sure|Я впевнений|I'm sure it will be fine.|Я впевнена, що все буде добре.
+I'm not sure|Я не впевнений|I'm not sure about this idea.|Я не впевнений щодо цієї ідеї.
+I agree|Я погоджуюся|I completely agree with you.|Я повністю з вами погоджуюся.
+I disagree|Я не погоджуюся|I'm afraid I disagree.|Боюся, я не погоджуюся.
+That's true|Це правда|That's true, but it's expensive.|Це правда, але це дорого.
+You're right|Ви маєте рацію|You're right, I didn't think of that.|Ви маєте рацію, я про це не подумав.
+Exactly|Саме так|Exactly, that's what I mean.|Саме так, це я й мав на увазі.
+Not exactly|Не зовсім|Not exactly, it's a bit different.|Не зовсім, це трохи інакше.
+I see your point|Я розумію вашу думку|I see your point, but I'm not convinced.|Я розумію вашу думку, але мене це не переконало.
+on the one hand|з одного боку|On the one hand, it's cheap.|З одного боку, це дешево.
+on the other hand|з іншого боку|On the other hand, it's far away.|З іншого боку, це далеко.
+however|проте|It's a nice place; however, it's noisy.|Це гарне місце, проте там шумно.
+but|але|I like it, but it's too big.|Мені подобається, але воно надто велике.
+actually|насправді|Actually, I prefer tea.|Насправді я віддаю перевагу чаю.
+to be honest|якщо чесно|To be honest, I don't like it.|Якщо чесно, мені це не подобається.
+frankly|відверто кажучи|Frankly, I'm a bit tired.|Відверто кажучи, я трохи втомилася.
+personally|особисто|Personally, I prefer the first option.|Особисто я віддаю перевагу першому варіанту.
+prefer|віддавати перевагу|I prefer coffee to tea.|Я віддаю перевагу каві перед чаєм.
+would rather|краще б|I'd rather stay home today.|Я б краще залишився вдома сьогодні.
+worth it|варте того|I think it's worth it.|Я вважаю, воно того варте.
+make sense|мати сенс|That makes sense to me.|Для мене це має сенс.
+interesting|цікавий|That's an interesting idea.|Це цікава ідея.
+boring|нудний|The film was a bit boring.|Фільм був трохи нудний.
+amazing|чудовий|The view is amazing!|Краєвид чудовий!
+terrible|жахливий|The weather was terrible.|Погода була жахлива.
+a great idea|чудова ідея|That's a great idea!|Це чудова ідея!
+a bad idea|погана ідея|I think it's a bad idea.|Я вважаю, що це погана ідея.
+be good for|бути корисним для|Walking is good for your health.|Прогулянки корисні для здоровʼя.
+be keen on|палко прагнути до|I'm keen on learning new things.|Я прагну вчитися новому.
+be crazy about|бути без розуму від|She's crazy about music.|Вона без розуму від музики.
+can't stand|терпіти не могти|I can't stand loud music.|Я терпіти не можу гучної музики.
+don't mind|не заперечувати|I don't mind waiting.|Я не заперечую почекати.
+suppose|припускати|I suppose you're right.|Припускаю, що ви маєте рацію.
+imagine|уявити|Can you imagine living there?|Ви можете уявити, що живете там?
+surprised|здивований|I was surprised by the price.|Мене здивувала ціна.
+disappointed|розчарований|I'm a little disappointed.|Я трохи розчарований.
+pleased|задоволений|I'm pleased with the result.|Я задоволена результатом.
+## D|Пояснення проблем
+I have a problem|У мене проблема|I have a problem with my phone.|У мене проблема з телефоном.
+Something is wrong|Щось не так|Something is wrong with my computer.|Щось не так з моїм комп'ютером.
+It doesn't work|Це не працює|The washing machine doesn't work.|Пральна машина не працює.
+I don't feel well|Я погано почуваюся|I don't feel well today.|Сьогодні я погано почуваюся.
+I have a headache|У мене болить голова|I have a bad headache.|У мене сильно болить голова.
+I have a cold|Я застудився|I have a cold, so I'll stay home.|Я застудилася, тому залишуся вдома.
+I need a doctor|Мені потрібен лікар|I need to see a doctor.|Мені потрібно до лікаря.
+It hurts|Болить|It hurts when I walk.|Болить, коли я ходжу.
+make an appointment|записатися на прийом|I'd like to make an appointment.|Я хотіла б записатися на прийом.
+prescription|рецепт|The doctor gave me a prescription.|Лікар виписав мені рецепт.
+pharmacy|аптека|Is there a pharmacy near here?|Чи є поблизу аптека?
+I lost my...|Я загубив...|I lost my keys.|Я загубила ключі.
+I forgot my...|Я забув...|I forgot my wallet at home.|Я забув гаманець удома.
+It was stolen|Це вкрали|My bag was stolen.|Мою сумку вкрали.
+I got lost|Я заблукав|I got lost in the city.|Я заблукала в місті.
+I missed...|Я пропустив...|I missed the last bus.|Я пропустив останній автобус.
+My flight was cancelled|Мій рейс скасували|My flight was cancelled yesterday.|Мій рейс скасували вчора.
+I need to change|Мені потрібно змінити|I need to change my booking.|Мені потрібно змінити бронювання.
+It's broken|Воно зламане|My phone is broken.|Мій телефон зламаний.
+The battery is dead|Батарея розрядилася|My phone battery is dead.|Батарея мого телефона розрядилася.
+I can't connect|Я не можу підключитися|I can't connect to the Wi-Fi.|Я не можу підключитися до Wi-Fi.
+It's too noisy|Надто шумно|It's too noisy in my street.|На моїй вулиці надто шумно.
+It's too expensive|Це надто дорого|The rent is too expensive.|Оренда надто дорога.
+It's not what I ordered|Це не те, що я замовляв|Sorry, this is not what I ordered.|Вибачте, це не те, що я замовляв.
+There is a mistake|Є помилка|There is a mistake in the bill.|У рахунку є помилка.
+I was charged twice|З мене двічі стягнули гроші|I was charged twice for the same item.|З мене двічі стягнули гроші за один товар.
+I'd like a refund|Я хотів би повернути гроші|I'd like a refund, please.|Я хотіла б повернути гроші, будь ласка.
+I'd like to complain|Я хотів би поскаржитися|I'd like to complain about the service.|Я хотіла б поскаржитися на обслуговування.
+It's not my fault|Це не моя вина|I think it's not my fault.|Я вважаю, що це не моя вина.
+I'm in a hurry|Я поспішаю|Sorry, I'm in a hurry.|Вибачте, я поспішаю.
+I'm running late|Я запізнююся|I'm running late, start without me.|Я запізнююся, починайте без мене.
+I'm stuck in traffic|Я застряг у заторі|I'm stuck in traffic.|Я застряг у заторі.
+It takes too long|Це займає надто багато часу|It takes too long to get there.|Дорога туди займає надто багато часу.
+I can't afford it|Я не можу собі цього дозволити|It's nice, but I can't afford it.|Це гарно, але я не можу собі цього дозволити.
+I don't have enough|Мені не вистачає|I don't have enough time.|Мені не вистачає часу.
+I'm out of|У мене закінчилося|I'm out of cash.|У мене закінчилася готівка.
+I can't hear you|Я вас не чую|Sorry, I can't hear you well.|Вибачте, я вас погано чую.
+I don't understand|Я не розумію|I don't understand this word.|Я не розумію цього слова.
+Could you explain it?|Можете це пояснити?|Could you explain it in simple words?|Можете пояснити це простими словами?
+Let me explain|Дозвольте пояснити|Let me explain what happened.|Дозвольте пояснити, що сталося.
+What happened?|Що сталося?|What happened to your phone?|Що сталося з вашим телефоном?
+What's the matter?|У чому річ?|What's the matter? You look worried.|У чому справа? Ви виглядаєте стурбованим.
+It's a long story|Це довга історія|It's a long story, I'll tell you later.|Це довга історія, розповім пізніше.
+I've been waiting for|Я чекаю на|I've been waiting for an hour.|Я чекаю вже годину.
+Don't worry|Не хвилюйтеся|Don't worry, we'll find a solution.|Не хвилюйтеся, ми знайдемо вирішення.
+It's okay|Нічого страшного|It's okay, it can happen to anyone.|Нічого страшного, таке може статися з будь-ким.`;
+const TASKS_RAW = `Попросити колегу пояснити завдання|Колега дав вам нове завдання, але ви не розумієте, що саме треба зробити. Попросіть пояснити його ще раз.|Here is the new task. Please finish it by Friday.|Ось нове завдання. Будь ласка, закінчіть його до пʼятниці.|Sorry, could you explain the task again? I'm not sure what I need to do first.|Вибачте, не могли б ви пояснити завдання ще раз? Я не впевнена, що мені потрібно зробити спочатку.
+Повідомити про затримку|Ви запізнюєтеся на зустріч через затор. Зателефонуйте колезі й повідомте про це.|Hello, Maria speaking.|Алло, Марія слухає.|Hi, it's me. I'm stuck in traffic and I'll be about fifteen minutes late. Please start without me.|Привіт, це я. Я застряг у заторі й запізнюся приблизно на пʼятнадцять хвилин. Будь ласка, починайте без мене.
+Домовитися про зміну графіка|Вам потрібно піти раніше в четвер. Домовтеся про це з керівником.|Yes, Maria? What can I do for you?|Так, Маріє? Чим можу допомогти?|Could I leave early on Thursday? I have a doctor's appointment. I can make up the time on Friday.|Чи можна мені піти раніше в четвер? У мене запис до лікаря. Я можу надолужити час у пʼятницю.
+Попросити перенести зустріч|У вас накладка в розкладі. Попросіть клієнта перенести зустріч на інший день.|Our meeting is tomorrow at ten, right?|Наша зустріч завтра о десятій, так?|Actually, I have a scheduling conflict. Could we reschedule the meeting for Wednesday?|Насправді в мене накладка в розкладі. Чи могли б ми перенести зустріч на середу?
+Попросити про допомогу|Ви не можете знайти потрібний файл. Запитайте в колеги, де він.|Hi, do you need something?|Привіт, тобі щось потрібно?|Hi, do you have a minute? I can't find the sales report. Do you know where it is?|Привіт, у тебе є хвилинка? Я не можу знайти звіт про продажі. Ти знаєш, де він?
+Попросити більше часу|Ви не встигаєте виконати завдання. Попросіть керівника подовжити термін.|How is the report going?|Як просувається звіт?|I'm making good progress, but I need a bit more time. Could I get an extension until Monday?|Я добре просуваюся, але мені потрібно трохи більше часу. Чи можу я отримати продовження до понеділка?
+Перепросити за помилку|Ви надіслали клієнтові не той файл. Перепросіть і пообіцяйте виправити.|Hello, I think this is the wrong file.|Добрий день, здається, це не той файл.|I'm very sorry for the mistake. I'll send you the correct file in five minutes.|Мені дуже шкода за помилку. Я надішлю вам правильний файл за пʼять хвилин.
+Уточнити, чи правильно ви зрозуміли|Ви хочете переконатися, що правильно зрозуміли інструкції керівника.|So, please send the report to the client by noon.|Отже, будь ласка, надішліть звіт клієнту до обіду.|Just to make sure I understand: I need to send the report to the client by noon. Is that correct?|Просто щоб переконатися, що я правильно зрозуміла: мені потрібно надіслати звіт клієнту до обіду. Це так?
+Відповісти на запитання на співбесіді|Вас просять розповісти про себе на співбесіді. Скажіть кілька речень.|Tell me about yourself, please.|Розкажіть про себе, будь ласка.|I'm Maria. I have three years of experience in customer service. I'm good at communication and I learn quickly.|Я Марія. Я маю три роки досвіду в обслуговуванні клієнтів. Я добре спілкуюся й швидко вчуся.
+Пояснити свою сильну сторону|На співбесіді вас питають про вашу сильну сторону.|What is your biggest strength?|Яка ваша найбільша сильна сторона?|My biggest strength is teamwork. I enjoy working with people and I always meet my deadlines.|Моя найбільша сильна сторона — командна робота. Мені подобається працювати з людьми, і я завжди дотримуюся термінів.
+Попросити клієнта повторити|Під час дзвінка звʼязок поганий, і ви не розчули клієнта.|...and the order number is...|...а номер замовлення...|I'm sorry, the connection is bad. Could you repeat the order number, please?|Вибачте, поганий звʼязок. Не могли б ви повторити номер замовлення, будь ласка?
+Прийняти повідомлення для колеги|Дзвонить клієнт, а вашої колеги немає на місці. Запропонуйте прийняти повідомлення.|Hello, can I speak to Maria, please?|Добрий день, чи можу я поговорити з Марією?|I'm afraid she's not here right now. Can I take a message?|Боюся, її зараз немає. Чи можу я прийняти повідомлення?
+Попросити колегу підмінити вас|Вам потрібен вільний день у понеділок. Попросіть колегу підмінити вас.|Hi, how's it going?|Привіт, як справи?|Could you do me a favor? Could you cover for me on Monday? I'd really appreciate it.|Ти можеш зробити мені послугу? Чи не міг би ти підмінити мене в понеділок? Я була б дуже вдячна.
+Повідомити про проблему з технікою|Ваш комп'ютер не вмикається. Повідомте про це в ІТ-відділ.|IT support, how can I help?|ІТ-підтримка, чим можу допомогти?|My computer stopped working this morning. I can't log in to the system. Could you take a look?|Мій комп'ютер перестав працювати сьогодні вранці. Я не можу увійти в систему. Не могли б ви подивитися?
+Висловити незгоду ввічливо|Ви не згодні з пропозицією колеги, але хочете сказати про це ввічливо.|I think we should cancel the project.|Я думаю, нам слід скасувати проєкт.|I see your point, but I disagree. In my opinion, we should give it one more chance.|Я розумію вашу думку, але не погоджуюся. На мою думку, нам слід дати йому ще один шанс.
+Запросити колегу на каву|Ви хочете запросити нову колегу випити кави після роботи.|I'm finishing up my work.|Я закінчую роботу.|Would you like to get a coffee after work? I'd like to get to know you better.|Хочете випити кави після роботи? Я хотів би краще вас пізнати.
+Повідомити, що вас не буде|Ви хворієте й не зможете прийти на роботу. Напишіть або скажіть керівникові.|Good morning, Maria. Is everything okay?|Доброго ранку, Маріє. Усе гаразд?|Good morning. I don't feel well, so I'm going to take a sick day today. I'll keep you posted.|Доброго ранку. Я погано почуваюся, тому візьму сьогодні лікарняний. Я триматиму вас у курсі.
+Підсумувати зустріч|Зустріч добігає кінця. Коротко підсумуйте основне й наступні кроки.|Does anyone have anything to add?|Хтось хоче щось додати?|Let me sum up. We agreed on the deadline, and the next step is to send the plan to the client.|Дозвольте підсумувати. Ми домовилися про термін, а наступний крок — надіслати план клієнту.
+Скаржитися на обслуговування|У кафе принесли не те, що ви замовили. Ввічливо поскаржтеся.|Is everything all right with your meal?|Усе гаразд з вашою стравою?|Excuse me, this is not what I ordered. I ordered the chicken soup, not the fish.|Перепрошую, це не те, що я замовляв. Я замовляв курячий суп, а не рибу.
+Домовитися про зустріч з другом|Ви хочете запросити друга на прогулянку в суботу. Запропонуйте план.|Hi! Long time no see!|Привіт! Давно не бачились!|Hi! Are you free on Saturday? How about going for a walk and then having lunch?|Привіт! Ти вільний у суботу? Що скажеш про прогулянку, а потім обід?
+Попросити поради|Ви не знаєте, що обрати: дві пропозиції роботи. Попросіть поради в друга.|You look worried. What's the matter?|Ти виглядаєш стурбованою. У чому справа?|I have two job offers and I'm not sure what to do. What do you recommend?|У мене дві пропозиції роботи, і я не знаю, що робити. Що ти порадиш?
+Пояснити, що ви загубили ключі|Ви загубили ключі й просите допомоги в орендодавця.|Hello, what can I do for you?|Добрий день, чим можу допомогти?|Hello, I have a problem. I lost my keys and I can't get into my apartment. Could you help me?|Добрий день, у мене проблема. Я загубила ключі й не можу потрапити в квартиру. Ви могли б мені допомогти?`;
+
+/* ---------- Дані ---------- */
+const WORDS = [];
+const THEMES = []; // { name, group }
+(function parse() {
+  let theme = null, group = null;
+  const seen = new Set();
+  DATA_RAW.split("\n").forEach(line => {
+    line = line.trim();
+    if (!line) return;
+    const h = line.match(/^## (\w)\|(.+)$/);
+    if (h) {
+      group = h[1] === "W" ? "work" : "daily";
+      theme = h[2];
+      THEMES.push({ name: theme, group });
+      return;
+    }
+    const p = line.split("|");
+    if (p.length !== 4) return;
+    const key = p[0].toLowerCase();
+    if (seen.has(key)) return;
+    seen.add(key);
+    WORDS.push({ id: WORDS.length + 1, group, theme, en: p[0], uk: p[1], ex: p[2], exUk: p[3] });
+  });
+})();
+const TASKS = TASKS_RAW.split("\n").map(l => l.trim()).filter(Boolean).map((l, i) => {
+  const p = l.split("|");
+  return { id: i + 1, title: p[0], situation: p[1], colEn: p[2], colUk: p[3], ansEn: p[4], ansUk: p[5] };
+});
 
 /* ---------- Озвучення ---------- */
 const statusEl = document.getElementById("status");
-let voices = [];
+const voiceSel = document.getElementById("voiceSel");
+const voiceHint = document.getElementById("voiceHint");
+const VOICE_KEY = "englishByEar.voiceURI";
 const synthOK = typeof window !== "undefined" && "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+let voices = [];
+let selectedURI = null;
+try { selectedURI = localStorage.getItem(VOICE_KEY); } catch (e) {}
+const isUS = v => (v.lang || "").replace("_", "-").toLowerCase() === "en-us";
 
 function showStatus(msg) {
   statusEl.textContent = msg;
   statusEl.classList.toggle("show", !!msg);
 }
-const VOICE_KEY = "englishByEar.voiceURI";
-const voiceSel = document.getElementById("voiceSel");
-const voiceHint = document.getElementById("voiceHint");
-const isUS = v => (v.lang || "").replace("_", "-").toLowerCase() === "en-us";
-let selectedURI = null;
-try { selectedURI = localStorage.getItem(VOICE_KEY); } catch (e) {}
-
 function loadVoices() {
   if (!synthOK) return;
   const all = window.speechSynthesis.getVoices() || [];
@@ -268,16 +903,18 @@ function renderVoices() {
   voiceSel.disabled = !voices.length;
   if (!voices.length) {
     const o = document.createElement("option");
-    o.textContent = "Англійських голосів не знайдено";
+    o.textContent = synthOK ? "Англійських голосів не знайдено" : "Озвучення недоступне";
     voiceSel.appendChild(o);
   }
-  voiceHint.textContent = voices.length ? "" :
-    "Англійський голос недоступний. Установіть англійський голос у налаштуваннях пристрою (мова та голосовий вивід) і оновіть сторінку.";
+  voiceHint.textContent = voices.length ? "" : (synthOK ?
+    "Англійський голос недоступний. Установіть англійський голос у налаштуваннях пристрою (мова та голосовий вивід) і оновіть сторінку." :
+    "Цей браузер не підтримує озвучення. Спробуйте Chrome, Edge або Safari.");
 }
 voiceSel.addEventListener("change", () => {
   selectedURI = voiceSel.value;
   try { localStorage.setItem(VOICE_KEY, selectedURI); } catch (e) {}
 });
+function speechText(t) { return t.replace(/\.\.\./g, "").replace(/\s+/g, " ").trim(); }
 function speak(text, rate) {
   if (!synthOK) {
     showStatus("Озвучення недоступне у цьому браузері. Спробуйте Chrome, Edge або Safari.");
@@ -286,7 +923,7 @@ function speak(text, rate) {
   showStatus("");
   try {
     window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
+    const u = new SpeechSynthesisUtterance(speechText(text));
     u.lang = "en-US";
     u.rate = rate;
     const v = pickVoice();
@@ -307,118 +944,229 @@ if (synthOK) {
   if ("onvoiceschanged" in window.speechSynthesis) {
     window.speechSynthesis.addEventListener("voiceschanged", loadVoices);
   }
+} else {
+  renderVoices();
 }
 
-/* ---------- Інтерфейс ---------- */
-const tabsEl = document.getElementById("tabs");
+/* ---------- Допоміжне ---------- */
+function el(tag, cls, text) {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text != null) n.textContent = text;
+  return n;
+}
+function speakBtn(label, aria, text, rate, slow) {
+  const b = el("button", slow ? "slow" : "", label);
+  b.type = "button";
+  b.setAttribute("aria-label", aria + ": " + text);
+  b.dataset.text = text;
+  b.dataset.rate = String(rate);
+  return b;
+}
+function actionsRow(text, kind) {
+  const row = el("div", "actions");
+  row.append(speakBtn("Прослухати", "Прослухати " + kind, text, RATE_NORMAL, false),
+             speakBtn("Повільно", "Прослухати повільно " + kind, text, RATE_SLOW, true));
+  return row;
+}
+function bindSpeak(container) {
+  container.addEventListener("click", e => {
+    const b = e.target.closest("button[data-text]");
+    if (b && container.contains(b)) speak(b.dataset.text, parseFloat(b.dataset.rate));
+  });
+}
+const norm = s => s.toLowerCase().replace(/[ʼ’`]/g, "'");
+
+/* ---------- Словник ---------- */
 const cardsEl = document.getElementById("cards");
-const learnTitle = document.getElementById("learnTitle");
-const learnSec = document.getElementById("learn");
-const practiceSec = document.getElementById("practice");
-const modeLearn = document.getElementById("modeLearn");
-const modePractice = document.getElementById("modePractice");
-let theme = THEMES[0];
-let mode = "learn";
-let pIndex = 0;
+const moreBtn = document.getElementById("moreBtn");
+const searchEl = document.getElementById("search");
+const groupChips = document.getElementById("groupChips");
+const themeChips = document.getElementById("themeChips");
+const wCount = document.getElementById("wCount");
+let fGroup = "all", fTheme = "all", query = "", shown = 0, results = [];
 
-const byTheme = t => PHRASES.filter(p => p.theme === t);
-
-function renderTabs() {
-  tabsEl.innerHTML = "";
-  THEMES.forEach(t => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.textContent = t;
-    b.setAttribute("aria-pressed", String(t === theme));
-    b.addEventListener("click", () => { theme = t; pIndex = 0; render(); });
-    tabsEl.appendChild(b);
+function chip(parent, label, pressed, onClick) {
+  const b = el("button", "", label);
+  b.type = "button";
+  b.setAttribute("aria-pressed", String(pressed));
+  b.addEventListener("click", onClick);
+  parent.appendChild(b);
+}
+function renderChips() {
+  groupChips.innerHTML = ""; themeChips.innerHTML = "";
+  chip(groupChips, "Усе (" + WORDS.length + ")", fGroup === "all", () => { fGroup = "all"; fTheme = "all"; refresh(); });
+  Object.keys(GROUPS).forEach(g => {
+    const n = WORDS.filter(w => w.group === g).length;
+    chip(groupChips, GROUPS[g] + " (" + n + ")", fGroup === g, () => { fGroup = g; fTheme = "all"; refresh(); });
+  });
+  chip(themeChips, "Усі теми", fTheme === "all", () => { fTheme = "all"; refresh(); });
+  THEMES.filter(t => fGroup === "all" || t.group === fGroup).forEach(t => {
+    chip(themeChips, t.name, fTheme === t.name, () => { fTheme = t.name; refresh(); });
   });
 }
-
-function renderCards() {
-  learnTitle.textContent = "Тема: " + theme;
+function filterWords() {
+  const q = norm(query.trim());
+  let list = WORDS.filter(w => (fGroup === "all" || w.group === fGroup) && (fTheme === "all" || w.theme === fTheme));
+  if (q) {
+    list = list.filter(w => norm(w.en).includes(q) || norm(w.uk).includes(q) || norm(w.ex).includes(q) || norm(w.exUk).includes(q));
+    const rank = w => norm(w.en).startsWith(q) ? 0 : norm(w.en).includes(q) ? 1 : norm(w.uk).includes(q) ? 2 : 3;
+    list = list.map((w, i) => [w, i]).sort((a, b) => rank(a[0]) - rank(b[0]) || a[1] - b[1]).map(x => x[0]);
+  }
+  return list;
+}
+function makeCard(w) {
+  const li = el("li", "card");
+  li.dataset.id = w.id;
+  li.append(el("span", "badge", w.theme));
+  const en = el("p", "en", w.en); en.lang = "en";
+  li.append(en, el("p", "uk", w.uk), actionsRow(w.en, "слово"));
+  const ex = el("div", "example");
+  const exEn = el("p", "en", w.ex); exEn.lang = "en";
+  ex.append(exEn, el("p", "uk", w.exUk));
+  li.append(el("p", "label", "Приклад"), ex, actionsRow(w.ex, "речення"));
+  return li;
+}
+function renderMore() {
+  const next = results.slice(shown, shown + PAGE);
+  next.forEach(w => cardsEl.appendChild(makeCard(w)));
+  shown += next.length;
+  moreBtn.classList.toggle("hidden", shown >= results.length);
+  moreBtn.textContent = "Показати ще (" + (results.length - shown) + ")";
+}
+function refresh() {
+  renderChips();
+  results = filterWords();
+  shown = 0;
   cardsEl.innerHTML = "";
-  byTheme(theme).forEach(p => {
-    const li = document.createElement("li");
-    li.className = "card";
-    const en = document.createElement("p"); en.className = "en"; en.lang = "en"; en.textContent = p.en;
-    const uk = document.createElement("p"); uk.className = "uk"; uk.textContent = p.uk;
-    const tip = document.createElement("p"); tip.className = "tip"; tip.textContent = "Підказка: " + p.tip;
-    const act = document.createElement("div"); act.className = "actions";
-    const b1 = document.createElement("button");
-    b1.type = "button"; b1.className = "play"; b1.textContent = "Прослухати";
-    b1.setAttribute("aria-label", "Прослухати фразу: " + p.en);
-    b1.dataset.text = p.en; b1.dataset.rate = RATE_NORMAL;
-    b1.addEventListener("click", () => speak(p.en, RATE_NORMAL));
-    const b2 = document.createElement("button");
-    b2.type = "button"; b2.className = "slow"; b2.textContent = "Повільно";
-    b2.setAttribute("aria-label", "Прослухати повільно: " + p.en);
-    b2.dataset.text = p.en; b2.dataset.rate = RATE_SLOW;
-    b2.addEventListener("click", () => speak(p.en, RATE_SLOW));
-    act.append(b1, b2);
-    li.append(en, uk, tip, act);
+  wCount.textContent = results.length ? "Знайдено: " + results.length : "";
+  if (!results.length) {
+    const li = el("li", "card nores", "Нічого не знайдено. Спробуйте інше слово або змініть тему.");
     cardsEl.appendChild(li);
+    moreBtn.classList.add("hidden");
+    return;
+  }
+  renderMore();
+}
+searchEl.addEventListener("input", () => { query = searchEl.value; refresh(); });
+moreBtn.addEventListener("click", renderMore);
+bindSpeak(cardsEl);
+
+/* ---------- Говоріння ---------- */
+const tasksEl = document.getElementById("tasks");
+function renderTasks() {
+  TASKS.forEach(t => {
+    const li = el("li", "card");
+    li.append(el("span", "badge", "Завдання " + t.id), el("h3", "", t.title));
+    li.querySelector("h3").style.margin = "4px 0";
+    li.append(el("p", "situation", t.situation));
+    if (t.colEn) {
+      li.append(el("p", "label", "Ви чуєте"));
+      const q = el("div", "example");
+      const qe = el("p", "en", t.colEn); qe.lang = "en";
+      q.append(qe, el("p", "uk", t.colUk));
+      li.append(q, actionsRow(t.colEn, "репліку співрозмовника"));
+    }
+    li.append(el("p", "label", "Ваша черга: скажіть уголос англійською"));
+    const ans = el("div", "reveal hidden");
+    ans.id = "ans" + t.id;
+    const ae = el("p", "en", t.ansEn); ae.lang = "en";
+    ans.append(ae, el("p", "uk", t.ansUk), actionsRow(t.ansEn, "зразок відповіді"));
+    const btn = el("button", "primary", "Показати зразок відповіді");
+    btn.type = "button";
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-controls", ans.id);
+    btn.addEventListener("click", () => {
+      const open = ans.classList.toggle("hidden") === false;
+      btn.setAttribute("aria-expanded", String(open));
+      btn.textContent = open ? "Сховати зразок відповіді" : "Показати зразок відповіді";
+    });
+    li.append(btn, ans);
+    tasksEl.appendChild(li);
   });
 }
+renderTasks();
+bindSpeak(tasksEl);
 
-const pEn = document.getElementById("pEn"), pUk = document.getElementById("pUk"),
-      pTip = document.getElementById("pTip"), pAnswer = document.getElementById("pAnswer"),
-      pHidden = document.getElementById("pHidden"), pCount = document.getElementById("pCount"),
-      pShow = document.getElementById("pShow");
+/* ---------- Перевір себе ---------- */
+const pTheme = document.getElementById("pTheme");
+const pEls = ["pEn", "pUk", "pEx", "pExUk", "pAnswer", "pHidden", "pCount", "pShow"].reduce((o, k) => (o[k] = document.getElementById(k), o), {});
+let pList = [], pIndex = 0;
 
-function currentPhrase() { const l = byTheme(theme); return l[pIndex % l.length]; }
-
+function fillThemeSelect() {
+  pTheme.innerHTML = "";
+  const add = (v, t) => { const o = document.createElement("option"); o.value = v; o.textContent = t; pTheme.appendChild(o); };
+  add("all", "Усі теми");
+  add("g:work", "Уся робота");
+  add("g:daily", "Усе повсякденне");
+  THEMES.forEach(t => add("t:" + t.name, (t.group === "work" ? "Робота: " : "Повсякденне: ") + t.name));
+}
+function shuffle(a) {
+  a = a.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+function buildPracticeList() {
+  const v = pTheme.value;
+  let l = WORDS;
+  if (v.startsWith("g:")) l = WORDS.filter(w => w.group === v.slice(2));
+  else if (v.startsWith("t:")) l = WORDS.filter(w => w.theme === v.slice(2));
+  pList = shuffle(l);
+  pIndex = 0;
+}
+const cur = () => pList[pIndex];
 function renderPractice() {
-  const l = byTheme(theme), p = currentPhrase();
-  pCount.textContent = "Тема: " + theme + " · Фраза " + (pIndex % l.length + 1) + " з " + l.length;
-  pEn.textContent = p.en; pUk.textContent = p.uk; pTip.textContent = "Підказка: " + p.tip;
-  hideAnswer();
+  const w = cur();
+  pEls.pCount.textContent = "Фраза " + (pIndex + 1) + " з " + pList.length;
+  pEls.pEn.textContent = w.en; pEls.pUk.textContent = w.uk;
+  pEls.pEx.textContent = w.ex; pEls.pExUk.textContent = w.exUk;
+  pEls.pAnswer.classList.add("hidden");
+  pEls.pHidden.classList.remove("hidden");
+  pEls.pShow.setAttribute("aria-expanded", "false");
 }
-function hideAnswer() {
-  pAnswer.classList.add("hidden");
-  pHidden.classList.remove("hidden");
-  pShow.setAttribute("aria-expanded", "false");
-}
-function showAnswer() {
-  pAnswer.classList.remove("hidden");
-  pHidden.classList.add("hidden");
-  pShow.setAttribute("aria-expanded", "true");
-}
-
-document.getElementById("pPlay").addEventListener("click", () => speak(currentPhrase().en, RATE_NORMAL));
-document.getElementById("pSlow").addEventListener("click", () => speak(currentPhrase().en, RATE_SLOW));
-pShow.addEventListener("click", showAnswer);
+pTheme.addEventListener("change", () => { buildPracticeList(); renderPractice(); });
+pEls.pShow.addEventListener("click", () => {
+  pEls.pAnswer.classList.remove("hidden");
+  pEls.pHidden.classList.add("hidden");
+  pEls.pShow.setAttribute("aria-expanded", "true");
+});
 document.getElementById("pNext").addEventListener("click", () => {
-  pIndex = (pIndex + 1) % byTheme(theme).length;
+  pIndex = (pIndex + 1) % pList.length;
   if (synthOK) window.speechSynthesis.cancel();
   renderPractice();
 });
+document.getElementById("pWordPlay").addEventListener("click", () => speak(cur().en, RATE_NORMAL));
+document.getElementById("pWordSlow").addEventListener("click", () => speak(cur().en, RATE_SLOW));
+document.getElementById("pExPlay").addEventListener("click", () => speak(cur().ex, RATE_NORMAL));
+document.getElementById("pExSlow").addEventListener("click", () => speak(cur().ex, RATE_SLOW));
+fillThemeSelect();
+buildPracticeList();
+renderPractice();
 
-function setMode(m) {
-  mode = m;
-  modeLearn.setAttribute("aria-pressed", String(m === "learn"));
-  modePractice.setAttribute("aria-pressed", String(m === "practice"));
-  learnSec.classList.toggle("hidden", m !== "learn");
-  practiceSec.classList.toggle("hidden", m !== "practice");
-  render();
+/* ---------- Розділи ---------- */
+const VIEWS = { words: ["viewWords", "secWords"], speak: ["viewSpeak", "secSpeak"], practice: ["viewPractice", "secPractice"] };
+function setView(name) {
+  Object.keys(VIEWS).forEach(k => {
+    document.getElementById(VIEWS[k][0]).setAttribute("aria-pressed", String(k === name));
+    document.getElementById(VIEWS[k][1]).classList.toggle("hidden", k !== name);
+  });
+  if (synthOK) window.speechSynthesis.cancel();
 }
-modeLearn.addEventListener("click", () => setMode("learn"));
-modePractice.addEventListener("click", () => setMode("practice"));
+Object.keys(VIEWS).forEach(k => document.getElementById(VIEWS[k][0]).addEventListener("click", () => setView(k)));
 
-function render() {
-  renderTabs();
-  if (mode === "learn") renderCards(); else renderPractice();
-}
-render();
+refresh();
 
 /* Самоперевірка: window.selfTest() у консолі */
 window.selfTest = function () {
-  const r = {};
-  THEMES.forEach(t => r[t] = byTheme(t).length);
-  r.total = PHRASES.length;
-  r.uniqueEn = new Set(PHRASES.map(p => p.en)).size;
-  r.slowLessThanNormal = RATE_SLOW < RATE_NORMAL;
-  return r;
+  const byTheme = {};
+  WORDS.forEach(w => byTheme[w.theme] = (byTheme[w.theme] || 0) + 1);
+  const work = WORDS.filter(w => w.group === "work").length;
+  return {
+    total: WORDS.length, work, daily: WORDS.length - work, workShare: +(work / WORDS.length).toFixed(2),
+    unique: new Set(WORDS.map(w => w.en.toLowerCase())).size, tasks: TASKS.length,
+    allFilled: WORDS.every(w => w.en && w.uk && w.ex && w.exUk), byTheme,
+    slowLessThanNormal: RATE_SLOW < RATE_NORMAL
+  };
 };
 </script>
 </body>
